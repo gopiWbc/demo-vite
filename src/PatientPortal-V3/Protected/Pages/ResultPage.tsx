@@ -10,7 +10,7 @@ interface TestResult {
 }
 
 export default function ResultsPage() {
-  const [selectedPatient, setSelectedPatient] = useState('John Doe');
+  const [selectedPatient] = useState('John Doe');
   const [searchQuery, setSearchQuery] = useState('');
   const [groupBy, setGroupBy] = useState<'date' | 'test'>('date');
 
@@ -44,9 +44,9 @@ export default function ResultsPage() {
   );
 
   return (
-        <div className="flex gap-6">
+        <div className="flex flex-col gap-6">
           {/* Main Content */}
-          <div className="flex-1">
+          <div className="flex-1 space-y-6">
             {/* Header */}
             <div className="mb-6">
               <h1 className="text-3xl font-bold text-slate-900 mb-2">Results</h1>
@@ -57,10 +57,10 @@ export default function ResultsPage() {
 
             {/* Controls */}
             <div className="mb-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-4">
+              <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:space-x-4">
                   <label className="text-sm font-semibold text-slate-700">Sort By</label>
-                  <div className="flex space-x-2">
+                  <div className="flex flex-wrap gap-2">
                     <button
                       onClick={() => setGroupBy('date')}
                       className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
@@ -84,7 +84,7 @@ export default function ResultsPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center gap-2 sm:self-end">
                   <label className="text-sm font-medium text-slate-700 flex items-center space-x-1">
                     <span>Search</span>
                     <Info className="w-4 h-4 text-slate-400" />
@@ -95,7 +95,7 @@ export default function ResultsPage() {
                       placeholder="Search your results"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-80 pl-4 pr-10 py-2 bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-app-primary focus:border-transparent text-sm"
+                      className="w-full sm:w-72 pl-4 pr-10 py-2 bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-app-primary focus:border-transparent text-sm"
                     />
                     <Search className="w-5 h-5 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2" />
                   </div>
@@ -110,7 +110,8 @@ export default function ResultsPage() {
 
             {/* Results Table */}
             <div className="bg-white border border-slate-200 rounded-lg overflow-hidden">
-              <table className="w-full">
+              <div className="overflow-x-auto">
+              <table className="w-full min-w-[640px]">
                 <thead className="bg-slate-50 border-b border-slate-200">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
@@ -165,6 +166,7 @@ export default function ResultsPage() {
                   ))}
                 </tbody>
               </table>
+              </div>
             </div>
 
             {filteredResults.length === 0 && (

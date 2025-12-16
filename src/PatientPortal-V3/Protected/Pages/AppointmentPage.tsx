@@ -3,9 +3,7 @@ import { Calendar, Clock, User, MapPin, Plus, X, Check } from 'lucide-react';
 
 const AppointmentPage = () => {
   const [showModal, setShowModal] = useState(false);
-  const [appointments, setAppointments] = useState<any>([
-    
-  ]);
+  const [appointments, setAppointments] = useState<any>([]);
 
   const [formData, setFormData] = useState({
     doctor: '',
@@ -53,12 +51,12 @@ const AppointmentPage = () => {
   return (
     <>
       {/* Main Content */}
-      <div className="">
+      <div className="space-y-8">
         {/* Quick Actions */}
-        <div className="mb-8">
+        <div className="space-y-3">
           <button
             onClick={() => setShowModal(true)}
-            className="btn-primary shadow-lg text-white px-6 py-3 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200 flex items-center gap-2"
+            className="btn-primary shadow-lg text-white px-6 py-3 rounded-lg font-medium hover:shadow-xl transition-all duration-200 flex items-center gap-2"
           >
             <Plus size={20} />
             Schedule New Appointment
@@ -69,7 +67,7 @@ const AppointmentPage = () => {
         </div>
 
         {/* Appointments Section */}
-        <div className="mb-8">
+        <div className="space-y-6">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Upcoming Appointments</h2>
           <p className="text-gray-600 text-sm mb-6">
             View and manage your scheduled appointments. All times are displayed in your local timezone.
@@ -84,9 +82,9 @@ const AppointmentPage = () => {
             <div className="space-y-4">
               {appointments.map((apt: any) => (
                 <div key={apt.id} className="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow duration-200">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-3">
+                  <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                    <div className="flex-1 space-y-4">
+                      <div className="flex items-center gap-3">
                         <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
                           <User size={24} className="text-indigo-600" />
                         </div>
@@ -95,8 +93,7 @@ const AppointmentPage = () => {
                           <p className="text-sm text-gray-600">{apt.specialty}</p>
                         </div>
                       </div>
-                      
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 ml-15">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                         <div className="flex items-center gap-2 text-gray-700">
                           <Calendar size={18} className="text-indigo-600" />
                           <span className="text-sm">{new Date(apt.date).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}</span>
@@ -112,12 +109,14 @@ const AppointmentPage = () => {
                       </div>
                     </div>
                     
-                    <div>
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        apt.status === 'confirmed' 
-                          ? 'bg-green-100 text-green-800' 
-                          : 'bg-yellow-100 text-yellow-800'
-                      }`}>
+                    <div className="flex md:flex-col md:items-end">
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          apt.status === 'confirmed'
+                            ? 'bg-green-100 text-green-800'
+                            : 'bg-yellow-100 text-yellow-800'
+                        }`}
+                      >
                         {apt.status === 'confirmed' ? 'Confirmed' : 'Pending'}
                       </span>
                     </div>
@@ -131,7 +130,7 @@ const AppointmentPage = () => {
 
       {/* Modal */}
       {showModal && (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-md p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-md p-4">
           <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
               <h3 className="text-2xl font-bold text-gray-900">Schedule Appointment</h3>
@@ -220,7 +219,7 @@ const AppointmentPage = () => {
                 />
               </div>
 
-              <div className="flex gap-3 pt-4">
+              <div className="flex flex-col-reverse gap-3 pt-4 sm:flex-row sm:justify-end sm:items-center">
                 <button
                   onClick={handleSubmit}
                   disabled={!formData.doctor || !formData.date || !formData.time}

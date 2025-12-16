@@ -3,25 +3,25 @@ import { Eye, EyeOff, Lock, Mail, User } from "lucide-react";
 import logo from '@/assets/dark.png';
 
 export default function PrimexLogin() {
-  const [step, setStep] = useState("email"); // 'email' or 'password'
-  const [email, setEmail] = useState("");
+  const [step, setStep] = useState("login"); // 'login' or 'password'
+  const [loginInput, setLoginInput] = useState(""); // Can be email or username
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleEmailSubmit = (e: any) => {
+  const handleLoginSubmit = (e: any) => {
     e.preventDefault();
-    if (email) {
+    if (loginInput) {
       setStep("password");
     }
   };
 
   const handlePasswordSubmit = (e: any) => {
     e.preventDefault();
-    console.log("Login attempt:", { email, password });
+    console.log("Login attempt:", { loginInput, password });
   };
 
-  const handleBackToEmail = () => {
-    setStep("email");
+  const handleBackToLogin = () => {
+    setStep("login");
     setPassword("");
   };
 
@@ -48,31 +48,31 @@ export default function PrimexLogin() {
 
             {/* Form Content */}
             <div className="px-8 py-8">
-              {step === "email" ? (
-                <div onSubmit={handleEmailSubmit}>
+              {step === "login" ? (
+                <div onSubmit={handleLoginSubmit}>
                   <h2 className="text-2xl font-bold text-gray-800 mb-6">
                     Sign In
                   </h2>
 
                   <div className="mb-6">
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Email
+                      Email or Username
                     </label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                       <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        type="text"
+                        value={loginInput}
+                        onChange={(e) => setLoginInput(e.target.value)}
                         className="w-full pl-11 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-app-primary focus:outline-none transition-colors"
-                        placeholder="Enter your email"
+                        placeholder="Enter your email or username"
                         required
                       />
                     </div>
                   </div>
 
                   <button
-                    onClick={handleEmailSubmit}
+                    onClick={handleLoginSubmit}
                     className="w-full btn-primary font-semibold py-3 px-4 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                   >
                     Next
@@ -80,7 +80,7 @@ export default function PrimexLogin() {
                   <div className="mt-6 space-y-3 text-center">
                     <button
                       type="button"
-                      onClick={handleBackToEmail}
+                      onClick={handleBackToLogin}
                       className="block w-full text-sm btn-text-primary font-medium"
                     >
                       Register a new account
@@ -98,7 +98,7 @@ export default function PrimexLogin() {
                     </h2>
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <User className="w-4 h-4" />
-                      <span>{email}</span>
+                      <span>{loginInput}</span>
                     </div>
                   </div>
 
@@ -145,7 +145,7 @@ export default function PrimexLogin() {
                     </a>
                     <button
                       type="button"
-                      onClick={handleBackToEmail}
+                      onClick={handleBackToLogin}
                       className="block w-full text-sm btn-text-primary font-medium"
                     >
                       Back to sign in

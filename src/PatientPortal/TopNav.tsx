@@ -28,7 +28,7 @@ const TopNav = () => {
                   <img
                     src={logo}
                     alt="Primex Logo"
-                    className="w-40 h-auto object-contain"
+                    className="w-50 h-auto object-contain"
                   />
                 </div>
             </div>

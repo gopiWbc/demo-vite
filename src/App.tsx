@@ -6,9 +6,9 @@ import PrimexV3 from './PatientPortal-V3'
 
 const App = () => {
   return (
-    <PrimexLogin />
+    // <PrimexLogin />
     // <PrimexRegister />
-    // <PrimexV3 />
+    <PrimexV3 />
     // <PatientPortal />
   )
 }

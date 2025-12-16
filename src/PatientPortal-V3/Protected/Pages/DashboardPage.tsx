@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Calendar, FileText, Bell, Users, CreditCard, ChevronRight, AlertCircle } from 'lucide-react';
+import { Calendar, FileText, Bell, Users, ChevronRight } from 'lucide-react';
 
 const DashboardPage = () => {
   const [notifications] = useState([
@@ -48,19 +48,19 @@ const DashboardPage = () => {
   const quickActions = [
     { icon: Calendar, title: 'Schedule Appointment', description: 'Book a new visit', color: 'blue', link: '/appointments' },
     { icon: FileText, title: 'View Results', description: 'Check lab reports', color: 'green', link: '/results' },
-    { icon: Users, title: 'My Physicians', description: 'Contact your care team', color: 'purple', link: '/physicians' }
+    { icon: Users, title: 'My Physicians', description: 'Contact your care team', color: 'blue', link: '/physicians' }
   ];
 
   return (
    
-      <div className="">    
-        <div className="mb-8">
+      <div className="space-y-8">    
+        <div className="space-y-2">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome, John Doe</h2>
           <p className="text-gray-600">Here's an overview of your health information and upcoming activities.</p>
         </div>
 
         {notifications.filter(n => n.unread).length > 0 && (
-          <div className="bg-app-primary text-white rounded-xl p-4 mb-8 flex items-center justify-between shadow-lg">
+          <div className="bg-app-primary text-white rounded-xl p-4 sm:p-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between shadow-lg">
             <div className="flex items-center gap-3">
               <Bell size={24} />
               <div>
@@ -72,7 +72,7 @@ const DashboardPage = () => {
         )}
 
         {/* Quick Actions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {quickActions.map((action, index) => (
             <button
               key={index}
@@ -104,7 +104,7 @@ const DashboardPage = () => {
                     This section displays up to 6 results that were reported in the last 3 months or are unread.
                   </p>
                 </div>
-                <button className="px-4 py-2 btn-primary rounded-lg font-medium transition-colors text-sm">
+                <button className="px-4 py-2 btn-primary rounded-lg font-medium transition-colors text-sm whitespace-nowrap">
                   View All
                 </button>
               </div>
@@ -112,7 +112,7 @@ const DashboardPage = () => {
               <div className="space-y-3">
                 {recentResults.map(result => (
                   <div key={result.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow bg-white/40 backdrop-blur-sm">
-                    <div className="flex items-start justify-between gap-4">
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                       <div className="flex-1">
                         <div className="flex items-start gap-3 mb-3">
                           <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -122,13 +122,13 @@ const DashboardPage = () => {
                             <p className="text-sm text-gray-900 font-medium leading-relaxed">{result.test}</p>
                           </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-3 text-sm ml-13">
-                          <div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                          <div className="space-y-1">
                             <p className="text-gray-500">Order From</p>
                             <p className="text-gray-900 font-medium">{result.doctor}</p>
                             <p className="text-gray-600 text-xs">{result.facility}</p>
                           </div>
-                          <div>
+                          <div className="space-y-1">
                             <p className="text-gray-500">Date</p>
                             <p className="text-gray-900 font-medium">{result.date}</p>
                           </div>
@@ -168,7 +168,8 @@ const DashboardPage = () => {
               <div className="space-y-3">
                 {upcomingAppointments.map(apt => (
                   <div key={apt.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow bg-white/40 backdrop-blur-sm">
-                    <div className="flex items-center gap-3 mb-3">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
+                      <div className="flex items-center gap-3">
                       <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
                         <Users size={24} className="text-indigo-600" />
                       </div>
@@ -176,17 +177,18 @@ const DashboardPage = () => {
                         <h4 className="font-semibold text-gray-900">{apt.doctor}</h4>
                         <p className="text-sm text-gray-600">{apt.specialty}</p>
                       </div>
+                      </div>
                     </div>
-                    <div className="grid grid-cols-3 gap-2 text-sm ml-15">
-                      <div>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+                      <div className="space-y-1">
                         <p className="text-gray-500 text-xs">Date</p>
                         <p className="text-gray-900 font-medium">{new Date(apt.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</p>
                       </div>
-                      <div>
+                      <div className="space-y-1">
                         <p className="text-gray-500 text-xs">Time</p>
                         <p className="text-gray-900 font-medium">{apt.time}</p>
                       </div>
-                      <div>
+                      <div className="space-y-1">
                         <p className="text-gray-500 text-xs">Location</p>
                         <p className="text-gray-900 font-medium text-xs">{apt.location}</p>
                       </div>

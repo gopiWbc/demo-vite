@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { User, Mail, Phone, MapPin, Calendar, UserCircle, Edit2, Save, X, Home, Trash2 } from 'lucide-react';
+import { Edit2 } from 'lucide-react';
 
 export default function ProfilePage() {
   const [editingSections, setEditingSections] = useState<Record<string, boolean>>({
@@ -7,8 +7,6 @@ export default function ProfilePage() {
     contact: false,
     address: false,
   });
-
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const [formData, setFormData] = useState({
     name: 'John Doe',
@@ -44,15 +42,15 @@ export default function ProfilePage() {
   };
 
   return (
-      <div className="max-w-4xl mx-auto ">
+      <div className="max-w-4xl mx-auto w-full space-y-8">
         {/* Header */}
         <div className="mb-6">
-              <h1 className="text-3xl font-bold text-slate-900 mb-2">My Profile</h1>
-              <p className="text-slate-600 text-md mt-2">
-                Manage your personal information and account settings.
-              </p>
-            </div>
-        <div className="border-t border-gray-200 my-6" />
+          <h1 className="text-3xl font-bold text-slate-900 mb-2">My Profile</h1>
+          <p className="text-slate-600 text-base">
+            Manage your personal information and account settings.
+          </p>
+        </div>
+        <div className="border-t border-gray-200" />
         {/* Personal Information Section */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
@@ -70,7 +68,7 @@ export default function ProfilePage() {
 
           {editingSections.personal ? (
             <div className="space-y-5">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <InputField
                   label="Name"
                   value={formData.name}
@@ -85,7 +83,7 @@ export default function ProfilePage() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Sex</label>
                   <div className="space-y-1.5">
@@ -142,7 +140,7 @@ export default function ProfilePage() {
                 options={['I prefer not to say', 'Hispanic or Latino', 'Not Hispanic or Latino']}
               />
 
-              <div className="flex space-x-3 pt-2">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:gap-3 gap-2 pt-2">
                 <button
                   onClick={() => handleSave('personal')}
                   className="btn-primary px-6 py-2 rounded-md text-sm font-medium transition-all"
@@ -158,7 +156,7 @@ export default function ProfilePage() {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               <DisplayField label="Date of Birth" value={formData.dateOfBirth} />
               <DisplayField label="Sex" value={formData.sex} />
               <DisplayField label="Race" value={formData.race} />
@@ -167,7 +165,7 @@ export default function ProfilePage() {
           )}
         </div>
 
-        <div className="border-t border-gray-200 my-6"></div>
+        <div className="border-t border-gray-200" />
 
         {/* Contact Information Section */}
         <div className="mb-8">
@@ -190,7 +188,7 @@ export default function ProfilePage() {
               
               <div className="space-y-1">
                 <p className="text-xs font-medium text-gray-500 mb-2">Primary</p>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <InputField
                     label="Street, PO Box"
                     value={formData.streetAddress}
@@ -205,7 +203,7 @@ export default function ProfilePage() {
                   />
                 </div>
 
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   <InputField
                     label="City"
                     value={formData.city}
@@ -285,7 +283,7 @@ export default function ProfilePage() {
             <p className="text-xs text-gray-500 mb-4 leading-relaxed">
               Note: Currently, multifactor authentication is available for the web and mobile versions of Primex Patient, but it must be enabled from a web browser.
             </p>
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-3 sm:space-y-0">
               <button className="bg-white hover:bg-gray-50 border-2 btn-text-primary border-app-primary px-5 py-2 rounded-md text-sm font-medium transition-all">
                 Turn On Multifactor Authentication
               </button>

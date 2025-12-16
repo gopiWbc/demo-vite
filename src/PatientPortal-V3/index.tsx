@@ -31,12 +31,14 @@ function PrimexV3() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex flex-col">
       <Navigation currentPage={currentPage} onPageChange={setCurrentPage} />
-      <main className="flex-1 mx-10 px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 md:grid-cols-5 gap-6">
-        <div className="mb-8 col-span-4">
-        {renderPage()}
-        </div>
-        <div>
-          <Additional />
+      <main className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <div className="mx-auto md:mx-20 grid grid-cols-1 lg:grid-cols-5 gap-6">
+          <section className="space-y-6 lg:col-span-3 xl:col-span-4">
+            {renderPage()}
+          </section>
+          <aside className="lg:col-span-2 xl:col-span-1 hidden lg:block">
+            <Additional />
+          </aside>
         </div>
       </main>
       <Footer />
