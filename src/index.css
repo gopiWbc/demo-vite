@@ -1,0 +1,70 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* You can put this in your global CSS file or tailwind config */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 6px;      /* horizontal scrollbar thickness */
+  background-color: #E5E7EB; /* track color */
+  width: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #dfdcdc; /* scrollbar handle color */
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #F3F4F6; /* track background */
+}
+
+/* Firefox scrollbar colors (thumb then track) */
+.custom-scrollbar {
+  scrollbar-color: #dfdcdc #F3F4F6;
+  scrollbar-width: thin;
+}
+
+/* Dark mode scrollbar styles when a parent (usually <html>) has the `dark` class */
+.dark .custom-scrollbar::-webkit-scrollbar {
+  height: 6px;
+  width: 3px;
+  background-color: #111827; /* dark track */
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #374151; /* gray-700 thumb */
+  border-radius: 3px;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #0f172a; /* darker track background */
+}
+
+.dark .custom-scrollbar {
+  scrollbar-color: #374151 #0f172a;
+  scrollbar-width: thin;
+}
+
+button{
+  @apply cursor-pointer
+}
+
+
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+}
