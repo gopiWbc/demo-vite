@@ -29,13 +29,14 @@ export default function PrimexLogin() {
     <div className="min-h-screen relative overflow-hidden bg-white">
       {/* Bottom Left Circle - Blue */}
       <div className="absolute -bottom-48 -left-48 w-[600px] h-[600px] bg-[#00c3e8] rounded-full blur-[120px] opacity-40"></div>
-      
+
       {/* Top Right Circle - Green */}
       <div className="absolute -top-48 -right-48 w-[600px] h-[600px] bg-[#05e57e] rounded-full blur-[120px] opacity-40"></div>
-      
+
       {/* Diagonal gradient overlay for smooth transition */}
       <div className="absolute inset-0 bg-gradient-to-tr from-[#00c3e8]/15 via-transparent to-[#05e57e]/15"></div>
 
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top,rgba(5,229,126,0.12),transparent_60%)]"></div>
       {/* Main Content */}
       <div className="relative z-10 flex items-center justify-center min-h-screen p-4">
         <div className="w-full max-w-md">
