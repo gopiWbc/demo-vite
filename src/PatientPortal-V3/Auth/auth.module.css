@@ -1,0 +1,210 @@
+/* ===== Background Gradient ===== */
+.gradientLandingBackground {
+  /* background: linear-gradient(
+    25deg,
+    rgba(0, 195, 232, 0.65) 0%,
+    rgba(255, 255, 255, 1) 35%,
+    rgba(255, 255, 255, 1) 65%,
+    rgba(5, 229, 126, 0.65) 100%
+  ); */
+
+  background: linear-gradient(47deg, rgba(0, 195, 232, 0.65) -22%, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 1) 82%, rgba(5, 229, 126, 0.65) 100%);
+ 
+}
+
+/* .circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.3;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.circleContainerTopRight {
+  position: absolute;
+  top: -200px;
+  right: -200px;
+  width: 700px;
+  height: 700px;
+  pointer-events: none;
+}
+
+.circleContainerTopRight .circle1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(100, 150, 230, 0.4),
+    rgba(100, 150, 230, 0.1)
+  );
+  top: 0;
+  right: 0;
+}
+
+.circleContainerTopRight .circle2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(120, 170, 240, 0.4),
+    rgba(120, 170, 240, 0.1)
+  );
+  top: 70px;
+  right: 70px;
+}
+
+.circleContainerTopRight .circle3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(140, 190, 250, 0.4),
+    rgba(140, 190, 250, 0.1)
+  );
+  top: 140px;
+  right: 140px;
+}
+
+.circleContainerBottomLeft {
+  position: absolute;
+  bottom: -200px;
+  left: -200px;
+  width: 700px;
+  height: 700px;
+  pointer-events: none;
+}
+
+.circleContainerBottomLeft .circle1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle at 70% 70%,
+    rgba(139, 125, 255, 0.4),
+    rgba(139, 125, 255, 0.1)
+  );
+  bottom: 0;
+  left: 0;
+}
+
+.circleContainerBottomLeft .circle2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(
+    circle at 70% 70%,
+    rgba(159, 145, 255, 0.4),
+    rgba(159, 145, 255, 0.1)
+  );
+  bottom: 70px;
+  left: 70px;
+}
+
+.circleContainerBottomLeft .circle3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle at 70% 70%,
+    rgba(179, 165, 255, 0.4),
+    rgba(179, 165, 255, 0.1)
+  );
+  bottom: 140px;
+  left: 140px;
+} */
+
+/* ----- v2 ----- */
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.45;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+
+.circleContainerTopRight {
+  position: absolute;
+  top: -200px;
+  right: -200px;
+  width: 700px;
+  height: 700px;
+  pointer-events: none;
+}
+
+.circleContainerTopRight .circle1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(5, 229, 126, 0.65),
+    rgba(5, 229, 126, 0.25)
+  );
+  top: 0;
+  right: 0;
+}
+
+.circleContainerTopRight .circle2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(5, 229, 126, 0.55),
+    rgba(5, 229, 126, 0.2)
+  );
+  top: 70px;
+  right: 70px;
+}
+
+.circleContainerTopRight .circle3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(5, 229, 126, 0.45),
+    rgba(5, 229, 126, 0.18)
+  );
+  top: 140px;
+  right: 140px;
+}
+
+.circleContainerBottomLeft {
+  position: absolute;
+  bottom: -200px;
+  left: -200px;
+  width: 700px;
+  height: 700px;
+  pointer-events: none;
+}
+
+.circleContainerBottomLeft .circle1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle at 70% 70%,
+    rgba(0, 195, 232, 0.65),
+    rgba(0, 195, 232, 0.25)
+  );
+  bottom: 0;
+  left: 0;
+}
+
+.circleContainerBottomLeft .circle2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(
+    circle at 70% 70%,
+    rgba(0, 195, 232, 0.55),
+    rgba(0, 195, 232, 0.2)
+  );
+  bottom: 70px;
+  left: 70px;
+}
+
+.circleContainerBottomLeft .circle3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle at 70% 70%,
+    rgba(0, 195, 232, 0.45),
+    rgba(0, 195, 232, 0.18)
+  );
+  bottom: 140px;
+  left: 140px;
+}
