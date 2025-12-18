@@ -34,12 +34,23 @@ export default function Navigation({ currentPage, onPageChange }: NavigationProp
                 {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
 
-              <div className="flex items-center justify-center overflow-hidden">
+             <div className="flex items-center gap-3 overflow-hidden">
                 <img
                   src={logo}
                   alt="Primex Logo"
                   className="h-10 w-auto object-contain sm:h-14"
                 />
+                <div className="hidden sm:flex items-center gap-2 border-l border-white/30 pl-3">
+                  <div
+                    className="w-1.5 h-1.5 rounded-full animate-pulse"
+                    style={{
+                      background: "linear-gradient(to right, #00c3e8, #05e57e)",
+                    }}
+                  />
+                  <span className="text-sm font-semibold tracking-wide text-white/90">
+                    PATIENT PORTAL
+                  </span>
+                </div>
               </div>
             </div>
 

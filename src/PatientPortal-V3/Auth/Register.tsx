@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Eye, EyeOff, Lock, Mail, User, Phone, Calendar, CheckCircle } from "lucide-react";
 import logo from '@/assets/dark.png';
+import AuthBackground from "./components/AuthBackground";
+import AuthFooter from "./components/AuthFooter";
 
 export default function PrimexRegister() {
   const [step, setStep] = useState(1); // 1: personal info, 2: account info, 3: success
@@ -46,22 +48,7 @@ export default function PrimexRegister() {
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-[#f6f9ff]">
-      {/* Soft Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5edff_1px,transparent_1px),linear-gradient(to_bottom,#e5edff_1px,transparent_1px)] bg-[size:60px_60px] opacity-40"></div>
-
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-1/2 -right-1/4 w-[800px] h-[800px] bg-gradient-to-br from-blue-400 to-blue-600 rounded-full opacity-20 blur-3xl"></div>
-        <div className="absolute -bottom-1/2 -left-1/4 w-[800px] h-[800px] bg-gradient-to-tr from-purple-400 to-indigo-600 rounded-full opacity-20 blur-3xl"></div>
-        <div className="absolute top-1/4 right-1/3 w-[400px] h-[400px] bg-gradient-to-bl from-cyan-300 to-blue-400 rounded-full opacity-15 blur-3xl"></div>
-      </div>
-
-      {/* Soft Abstract Rings */}
-      <div className="pointer-events-none absolute right-[-300px] top-[-200px] w-[900px] h-[900px] rounded-full border-[60px] border-blue-100 opacity-40"></div>
-      <div className="pointer-events-none absolute right-[-200px] top-[-100px] w-[700px] h-[700px] rounded-full border-[40px] border-indigo-200 opacity-40"></div>
-      <div className="pointer-events-none absolute right-[-120px] top-[40px] w-[500px] h-[500px] rounded-full border-[30px] border-purple-200 opacity-40"></div>
-
-      {/* Main Content */}
+      <AuthBackground />
       <div className="relative z-10 flex items-center justify-center min-h-screen p-4">
         <div className="w-full max-w-md">
           {/* Registration Card */}
@@ -206,7 +193,7 @@ export default function PrimexRegister() {
                   <div className="mt-4 text-center">
                     <p className="text-sm text-gray-600">
                       Already have an account?{" "}
-                      <a href="#" className="btn-text-primary font-medium">
+                      <a href="#" className="text-blue-700">
                         Sign In
                       </a>
                     </p>
@@ -314,7 +301,7 @@ export default function PrimexRegister() {
                   <div className="mt-6 text-center">
                     <button
                       onClick={handleBackToStep1}
-                      className="text-sm btn-text-primary font-medium"
+                      className="text-sm text-blue-700"
                     >
                       Back to personal information
                     </button>
@@ -344,19 +331,7 @@ export default function PrimexRegister() {
             </div>
           </div>
 
-          {/* Footer */}
-          <div className="mt-8 text-center text-sm text-gray-600">
-            <p>© 2025 Primex Clinical Laboratories Inc., All rights reserved.</p>
-            <div className="mt-2 space-x-4">
-              <a href="#" className="btn-text-primary transition-colors">
-                Privacy Policy
-              </a>
-              <span>•</span>
-              <a href="#" className="btn-text-primary transition-colors">
-                Terms of Service
-              </a>
-            </div>
-          </div>
+          <AuthFooter />
         </div>
       </div>
     </div>

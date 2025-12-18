@@ -1,14 +1,14 @@
 /* ===== Background Gradient ===== */
 .gradientLandingBackground {
-  /* background: linear-gradient(
+  background: linear-gradient(
     25deg,
     rgba(0, 195, 232, 0.65) 0%,
     rgba(255, 255, 255, 1) 35%,
     rgba(255, 255, 255, 1) 65%,
     rgba(5, 229, 126, 0.65) 100%
-  ); */
+  );
 
-  background: linear-gradient(47deg, rgba(0, 195, 232, 0.65) -22%, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 1) 82%, rgba(5, 229, 126, 0.65) 100%);
+  /* background: linear-gradient(47deg, rgba(0, 195, 232, 0.65) -22%, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 1) 82%, rgba(5, 229, 126, 0.65) 100%); */
  
 }
 

@@ -65,7 +65,7 @@
 }
 
 .btn-primary:hover {
-  background-color: var(--app-primary-hover);
+  background-color: var(--app-primary-hover) !important;
 }
 
 .btn-text-primary {
@@ -79,4 +79,48 @@
 
 .focus\:ring-app-primary:focus {
   box-shadow: 0 0 0 2px var(--app-primary);
+}
+/* ------------------- App Table ------------------- */
+.app-table {
+  background: #ffffff;
+}
+
+.app-table .ant-table-thead > tr > th {
+  background: #ffffff;
+  color: #000000;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 14px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.app-table .ant-table-column-sorter {
+  margin-left: 6px;
+}
+
+.app-table .ant-table-tbody > tr > td {
+  font-size: 13px;
+  padding: 14px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #111827;
+}
+
+.app-table .ant-table-tbody > tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.app-table .ant-table-tbody > tr:hover > td {
+  background-color: #f1f5f9;
+  cursor: pointer;
+}
+
+/* Checkbox alignment */
+.app-table .ant-checkbox-wrapper {
+  margin-left: 4px;
+}
+
+/* Remove default ant border */
+.app-table .ant-table-container {
+  border: none;
 }

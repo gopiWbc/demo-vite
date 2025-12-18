@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Eye, EyeOff, Lock, Mail, User } from "lucide-react";
 import logo from '@/assets/dark.png';
-import AuthBackground from "./components/AuthBackground";
-import AuthFooter from "./components/AuthFooter";
+import AuthBackground from "../../PatientPortal-V3/Auth/components/AuthBackground";
+import AuthFooter from "../../PatientPortal-V3/Auth/components/AuthFooter";
 
-export default function PrimexLogin() {
+export default function PhysicianLogin() {
   const [step, setStep] = useState("email"); // 'email' or 'password'
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -67,8 +67,8 @@ export default function PrimexLogin() {
                       background: "linear-gradient(to right, #00c3e8, #05e57e)",
                     }}
                   />
-                  <span className="text-primary font-bold text-xs tracking-widest">
-                    PATIENT PORTAL
+                  <span className="text-primary font-bold text-xs tracking-widest uppercase">
+                    Physician Portal
                   </span>
                 </div>
                 <div className="flex-1 h-px bg-gradient-to-l from-transparent via-[#05e57e]/50 to-[#05e57e]" />
@@ -102,14 +102,6 @@ export default function PrimexLogin() {
                   >
                     Next
                   </button>
-                  <div className="mt-6 space-y-3 text-center">
-                    <button
-                      type="button"
-                      className="block w-full text-sm text-blue-700 font-normal transition-colors"
-                    >
-                      Register a new account ?
-                    </button>
-                  </div>
                 </div>
               ) : (
                 <div>
