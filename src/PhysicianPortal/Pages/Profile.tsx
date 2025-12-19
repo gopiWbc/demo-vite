@@ -56,7 +56,7 @@ export default function Profile() {
                 onClick={() => toggleEdit("aboutYou")}
                 className="text-primary text-sm font-medium hover:underline"
               >
-                [ edit ]
+                ( edit )
               </button>
             )}
           </div>
@@ -232,7 +232,7 @@ export default function Profile() {
                   onClick={() => toggleEdit("notifications")}
                   className="text-primary text-sm font-medium hover:underline"
                 >
-                  [ edit ]
+                  ( edit )
                 </button>
               )}
             </div>

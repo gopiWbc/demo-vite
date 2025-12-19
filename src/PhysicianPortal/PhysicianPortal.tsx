@@ -3,18 +3,21 @@ import TopHeader from './Components/TopHeader';
 import PhysicianFooter from './Components/PhysicianFooter';
 import Profile from './Pages/Profile';
 import ResultList from './Pages/ResultList';
-import Orders from './Pages/Orders';
+import Orders from './Pages/Orders/Orders';
+import Dashboard from './Pages/Dashboard/Dashboard';
 
 function PhysicianPortal() {
   const [currentPage, setCurrentPage] = useState<string>('result-list');
 
   const renderPage = () => {
     switch (currentPage) {
+      case 'dashboard':
+        return <Dashboard />;
       case 'profile':
         return <Profile />;
       case 'result-list':
         return <ResultList />;
-      case 'Orders':
+      case 'orders':
         return <Orders />;
       default:
         return <Profile />;

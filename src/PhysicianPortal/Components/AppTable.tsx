@@ -5,6 +5,7 @@ import type {
   TableProps,
 } from "antd/es/table";
 import type { TableRowSelection } from "antd/es/table/interface";
+import '@/styles/AppTable.css';
 
 interface AppTableProps<T> {
   columns: ColumnsType<T>;
@@ -17,6 +18,7 @@ interface AppTableProps<T> {
   rowSelection?: TableRowSelection<T> | boolean;
   rowClassName?: string | ((record: T, index: number) => string);
   onChange?: TableProps<T>["onChange"];
+  scroll?: TableProps<T>["scroll"];
 }
 
 export default function AppTable<T extends object>({
@@ -30,6 +32,7 @@ export default function AppTable<T extends object>({
   rowSelection,
   rowClassName,
   onChange,
+  scroll,
 }: AppTableProps<T>) {
   const defaultPagination: TablePaginationConfig = {
     pageSize: 10,
@@ -49,6 +52,9 @@ export default function AppTable<T extends object>({
       ? ({ type: "checkbox" } as TableRowSelection<T>)
       : rowSelection || undefined;
 
+  const resolvedScroll: TableProps<T>["scroll"] =
+    scroll ?? { x: "max-content" };
+
   return (
     <div className="app-table-container">
       <Table<T>
@@ -63,6 +69,7 @@ export default function AppTable<T extends object>({
         rowSelection={resolvedRowSelection}
         rowClassName={rowClassName}
         onChange={onChange}
+        scroll={resolvedScroll}
         onRow={(record) => ({
           onClick: () => onRowClick?.(record),
         })}

@@ -1,129 +1,9 @@
-import { useEffect, useMemo, useState, type ChangeEvent } from "react";
+import { useState } from "react";
 import AppTable from "../Components/AppTable";
-import type { ColumnsType } from "antd/es/table";
-import { Download, Eye } from "lucide-react";
-
-type ResultRecord = {
-  id: string;
-  reportedDate: string;
-  collectedDate: string;
-  patientName: string;
-  dob: string;
-  patientId: string;
-  accession: string;
-  orderingProvider: string;
-  accountNumber: string;
-  orderedTests: string;
-  status: "Preliminary" | "Final";
-  category: string;
-  flagged?: boolean;
-};
-
-const columns: ColumnsType<ResultRecord> = [
-  {
-    title: "Reported",
-    dataIndex: "reportedDate",
-    key: "reportedDate",
-    sorter: (a, b) => a.reportedDate.localeCompare(b.reportedDate),
-  },
-  {
-    title: "Collected",
-    dataIndex: "collectedDate",
-    key: "collectedDate",
-    sorter: (a, b) => a.collectedDate.localeCompare(b.collectedDate),
-  },
-  {
-    title: "Patient Name",
-    dataIndex: "patientName",
-    key: "patientName",
-    render: (value: string) => value.toUpperCase(),
-  },
-  {
-    title: "D.O.B.",
-    dataIndex: "dob",
-    key: "dob",
-  },
-  {
-    title: "Patient ID",
-    dataIndex: "patientId",
-    key: "patientId",
-  },
-  {
-    title: "Accession #",
-    dataIndex: "accession",
-    key: "accession",
-  },
-  {
-    title: "Ordering Provider",
-    dataIndex: "orderingProvider",
-    key: "orderingProvider",
-    render: (value: string) => (
-      <span className="block max-w-[220px] truncate" title={value}>
-        {value}
-      </span>
-    ),
-  },
-  {
-    title: "Account #",
-    dataIndex: "accountNumber",
-    key: "accountNumber",
-  },
-  {
-    title: "Ordered Tests",
-    dataIndex: "orderedTests",
-    key: "orderedTests",
-    render: (value: string) => (
-      <span className="block max-w-[220px] truncate" title={value}>
-        {value}
-      </span>
-    ),
-  },
-  {
-    title: "Status",
-    dataIndex: "status",
-    key: "status",
-    render: (value: ResultRecord["status"]) => (
-      <span
-        className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase ${
-          value === "Final"
-            ? "bg-emerald-100 text-emerald-600"
-            : "bg-amber-100 text-amber-600"
-        }`}
-      >
-        {value}
-      </span>
-    ),
-  },
-  {
-    title: "Category",
-    dataIndex: "category",
-    key: "category",
-  },
-  {
-    title: "Actions",
-    key: "actions",
-    fixed: "right",
-    width: 110,
-    render: () => (
-      <div className="flex items-center gap-2">
-        <button
-          type="button"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-600 transition hover:border-app-primary hover:text-app-primary"
-          aria-label="View details"
-        >
-          <Eye className="h-4 w-4" />
-        </button>
-        <button
-          type="button"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-600 transition hover:border-app-primary hover:text-app-primary"
-          aria-label="Download"
-        >
-          <Download className="h-4 w-4" />
-        </button>
-      </div>
-    ),
-  },
-];
+import type { FilterValues, ResultRecord } from "./Results/types";
+import { columns } from "./Results/column";
+import FilterComponent from "./Results/FilterComponent";
+import AppTabs from "../../PatientPortal-V3/Protected/components/AppTabs";
 
 const resultData: ResultRecord[] = [
   {
@@ -270,12 +150,54 @@ const resultData: ResultRecord[] = [
 ];
 
 export default function ResultList() {
+   const [filters, setFilters] = useState<FilterValues>({
+    patientName: "",
+    patientId: "",
+    status: [],
+    category: [],
+    dateRange: [null, null],
+    provider: "",
+  });
+
+  const activeFilterCount = [
+    filters.patientName,
+    filters.patientId,
+    ...filters.status,
+    ...filters.category,
+    (filters.dateRange[0] && filters.dateRange[1]) ? "dateRange" : "",
+    filters.provider,
+  ].filter(Boolean).length;
+
+  const handleSearch = () => {
+    // Implement your search/filter logic here
+    console.log("Searching with filters:", filters);
+    // You can call your API or filter the data here
+  };
+
+  const handleClearAll = () => {
+    setFilters({
+      patientName: "",
+      patientId: "",
+      status: [],
+      category: [],
+      dateRange: [null, null],
+      provider: "",
+    });
+  };
+
+   const [activeTab, setActiveTab] = useState("reported");
+
+  const tabs = [
+    { key: "reported", label: "Reported" },
+    { key: "pending", label: "Pending" },
+  ];
+
   return (
     <div className="space-y-6">
-      <header className="bg-white border border-gray-200 rounded-2xl px-6 py-5 shadow-sm">
+      <header className="px-2">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-2xl font-semibold text-gray-900">Result List</h1>
+            <h1 className="text-2xl font-semibold text-gray-900">Results</h1>
             <p className="text-sm text-gray-500">
               Review recent lab orders, manage result delivery, and access supporting files.
             </p>
@@ -284,12 +206,26 @@ export default function ResultList() {
             <button className="btn-primary rounded-lg px-5 py-2 text-sm font-semibold shadow-md">
               New Order
             </button>
-            <button className="rounded-lg border border-gray-300 px-5 py-2 text-sm font-semibold text-gray-700 transition hover:border-app-primary hover:text-app-primary">
+            <button  className="rounded-lg border border-gray-300 px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold text-gray-700 transition hover:border-indigo-600 hover:text-indigo-600 flex-1 sm:flex-initial">
               Export
             </button>
           </div>
         </div>
       </header>
+
+      <AppTabs
+        tabs={tabs}
+        activeKey={activeTab}
+        onChange={setActiveTab}
+      />
+
+      <FilterComponent
+        filters={filters}
+        onFilterChange={setFilters}
+        onSearch={handleSearch}
+        onClearAll={handleClearAll}
+        activeFilterCount={activeFilterCount}
+      />
 
       <AppTable<ResultRecord>
         columns={columns}
