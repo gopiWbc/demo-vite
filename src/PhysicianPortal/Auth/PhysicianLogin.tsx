@@ -68,7 +68,7 @@ export default function PhysicianLogin() {
                     }}
                   />
                   <span className="text-primary font-bold text-xs tracking-widest uppercase">
-                    Physician Portal
+                    Provider Portal
                   </span>
                 </div>
                 <div className="flex-1 h-px bg-gradient-to-l from-transparent via-[#05e57e]/50 to-[#05e57e]" />

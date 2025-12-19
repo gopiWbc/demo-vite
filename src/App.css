@@ -81,17 +81,32 @@
   box-shadow: 0 0 0 2px var(--app-primary);
 }
 /* ------------------- App Table ------------------- */
-.app-table {
+.app-table-container {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
   background: #ffffff;
+  box-shadow: 0px 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.app-table {
+  background: transparent;
+}
+
+.app-table .ant-table-wrapper .ant-table-container {
+  border-radius: 0;
+  border: none;
 }
 
 .app-table .ant-table-thead > tr > th {
-  background: #ffffff;
-  color: #000000;
+  background: #f7f8ff;
+  color: #1f2937;
   font-weight: 700;
   font-size: 13px;
-  padding: 14px 12px;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 16px 18px;
+  border-bottom: 1px solid #d9dce6;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   white-space: nowrap;
 }
 
@@ -101,26 +116,84 @@
 
 .app-table .ant-table-tbody > tr > td {
   font-size: 13px;
-  padding: 14px 12px;
-  border-bottom: 1px solid #e5e7eb;
-  color: #111827;
+  font-weight: 500;
+  padding: 16px 18px;
+  border-bottom: 1px solid #eef0f6;
+  color: #0f172a;
 }
 
-.app-table .ant-table-tbody > tr:nth-child(even) {
-  background-color: #fafafa;
+.app-table .ant-table-tbody > tr:nth-child(odd) > td {
+  background-color: #ffffff;
+}
+
+.app-table .ant-table-tbody > tr:nth-child(even) > td {
+  background-color: #fafbff;
 }
 
 .app-table .ant-table-tbody > tr:hover > td {
-  background-color: #f1f5f9;
+  background-color: #eef5ff;
   cursor: pointer;
 }
 
-/* Checkbox alignment */
-.app-table .ant-checkbox-wrapper {
-  margin-left: 4px;
+.app-table .ant-table-pagination {
+  margin: 0;
+  padding: 14px 18px;
+  border-top: 1px solid #e5e7eb;
 }
 
-/* Remove default ant border */
-.app-table .ant-table-container {
-  border: none;
+.app-table .ant-pagination-item {
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+
+.app-table .ant-pagination-item a {
+  color: #1f2937;
+}
+
+.app-table .ant-pagination-item-active {
+  border-color: var(--app-primary);
+}
+
+.app-table .ant-pagination-item-active a {
+  color: var(--app-primary);
+}
+
+.app-table .ant-checkbox-wrapper {
+  margin-left: 6px;
+}
+
+.app-table .ant-table-tbody .ant-checkbox-wrapper {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.app-table .ant-table-tbody tr:hover .ant-checkbox-wrapper,
+.app-table .ant-table-tbody tr.ant-table-row-selected .ant-checkbox-wrapper,
+.app-table .ant-table-tbody tr .ant-checkbox-wrapper .ant-checkbox-input:focus-visible + .ant-checkbox-inner,
+.app-table .ant-table-tbody tr .ant-checkbox-wrapper:hover {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.app-table .ant-table-tbody tr .ant-checkbox .ant-checkbox-inner {
+  border-radius: 9999px;
+}
+
+.app-table .ant-table-thead tr .ant-checkbox .ant-checkbox-inner {
+  border-radius: 9999px;
+}
+
+.app-table .ant-table-tbody > tr.danger-row > td {
+  background: rgba(239, 68, 68, 0.12);
+  color: #b91c1c;
+}
+.app-table .ant-table-tbody > tr.danger-row:hover > td {
+  background: rgba(239, 68, 68, 0.225);
+  color: #b91c1c;
+}
+
+.app-table .ant-table-tbody > tr.danger-row .text-danger {
+  color: #b91c1c;
+  font-weight: 600;
 }

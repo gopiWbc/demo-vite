@@ -1,11 +1,23 @@
 import { Drawer } from "antd";
 import {
-  ClipboardList,
+  ChevronDown,
+  Home,
+  Users,
+  FilePlus,
+  FileDown,
+  ShoppingCart,
+  Package,
+  Mail,
+  CreditCard,
+  BarChart3,
+  Phone,
+  Settings,
   FileText,
-  LayoutDashboard,
-  Stethoscope,
 } from "lucide-react";
+import { useState } from "react";
 import logo from "@/assets/dark.png";
+
+const BRAND = "#200e3d";
 
 interface SidebarProps {
   open: boolean;
@@ -20,75 +32,192 @@ export default function AppSidebar({
   currentPage,
   onPageChange,
 }: SidebarProps) {
-  const menuItems = [
-    {
-      key: "dashboard",
-      icon: <LayoutDashboard size={18} />,
-      label: "Dashboard",
-    },
-    {
-      key: "appointment",
-      icon: <ClipboardList size={18} />,
-      label: "Appointments",
-    },
-    {
-      key: "results",
-      icon: <FileText size={18} />,
-      label: "Results",
-    },
-    {
-      key: "physicians",
-      icon: <Stethoscope size={18} />,
-      label: "Physicians",
-    },
-  ];
+  const [openKey, setOpenKey] = useState<string | null>(null);
 
-  const handleMenuClick = (key: string) => {
-    onPageChange(key);
-    onClose();
-  };
+  const items = [
+    { key: "home", label: "Home", icon: Home },
+
+    { key: "result-list", label: "Results", icon: FileText },
+
+    {
+      key: "patient",
+      label: "Patient",
+      icon: Users,
+      children: ["Create Patient", "Patient List"],
+    },
+
+    // { key: "accession", label: "Accession", icon: FilePlus },
+    // { key: "accession-export", label: "Accession Export", icon: FileDown },
+
+    {
+      key: "orders",
+      label: "Orders",
+      icon: ShoppingCart,
+      children: ["New Orders", "Order History", "Manage Orders"],
+    },
+
+    {
+      key: "settings",
+      label: "Settings",
+      icon: Settings,
+      children: ["General", "Roles & Permissions"],
+    },
+
+    {
+      key: "manage",
+      label: "Manage",
+      icon: Users,
+      children: ["Users", "Labs"],
+    },
+
+    { key: "supply-masters", label: "Supply Order Masters", icon: Package },
+    { key: "supply-orders", label: "Supply Orders", icon: Package },
+    { key: "messages", label: "Messages", icon: Mail },
+    { key: "transactions", label: "Transactions", icon: CreditCard },
+    { key: "sales-report", label: "Sales Report", icon: BarChart3 },
+    { key: "contact", label: "Contact Us", icon: Phone },
+  ];
 
   return (
     <Drawer
       placement="left"
       open={open}
       onClose={onClose}
-      width={280}
-      closeIcon={<span className="text-white">✕</span>}
+      width={300}
+      closeIcon={false}
       classNames={{
         header: "border-none bg-gray-100",
         body: "!p-0 bg-gray-100",
       }}
-      title={
-        <img
-          src={logo}
-          alt="Primex Logo"
-          className="h-12 w-auto object-contain"
-        />
-      }
+      title={<img src={logo} className="h-10 mx-auto" />}
     >
-      {/* Navigation Menu */}
-      <div className="py-2">
-        {menuItems.map((item) => {
+      <nav className="px-3 py-4 text-sm text-gray-800">
+        {items.map((item) => {
+          const isOpen = openKey === item.key;
           const isActive = currentPage === item.key;
+          const Icon = item.icon;
+
+          /* ---------- SIMPLE ITEM ---------- */
+          if (!item.children) {
+            return (
+              <button
+                key={item.key}
+                onClick={() => onPageChange(item.key)}
+                className={`group relative w-full mb-1 rounded-lg px-4 py-2.5 text-left
+                  transition-all duration-200
+                  ${
+                    isActive
+                      ? "bg-white shadow-sm scale-[1.03]"
+                      : "hover:bg-white hover:shadow-sm hover:scale-[1.03]"
+                  }`}
+              >
+                {/* Active / Hover rail */}
+                <span
+                  className="absolute left-0 top-1 bottom-1 w-[3px] rounded-r"
+                  style={{ backgroundColor: isActive ? BRAND : "transparent" }}
+                />
+
+                <div className="flex items-center gap-3">
+                  {Icon && (
+                    <Icon
+                      size={16}
+                      style={{ color: isActive ? BRAND : "#6b7280" }}
+                    />
+                  )}
+                  <span
+                    className="font-medium"
+                    style={{ color: isActive ? BRAND : "#1f2937" }}
+                  >
+                    {item.label}
+                  </span>
+                </div>
+              </button>
+            );
+          }
+
+          /* ---------- ACCORDION ITEM ---------- */
           return (
-            <button
-              key={item.key}
-              onClick={() => handleMenuClick(item.key)}
-              className={`w-full flex items-center gap-3 px-6 py-4 text-sm font-medium transition-all border-l-4 hover:scale-105 ${
-                isActive
-                  ? "bg-white border-l-indigo-600 text-gray-900 ml-2 scale-105"
-                  : "bg-gray-100 border-l-transparent text-gray-700 hover:bg-gray-200"
-              }`}
-            >
-              <span className={isActive ? "text-indigo-600" : "text-gray-600"}>
-                {item.icon}
-              </span>
-              <span>{item.label}</span>
-            </button>
+            <div key={item.key} className="mb-1">
+              <button
+                onClick={() =>
+                  setOpenKey(isOpen ? null : item.key)
+                }
+                className="group relative w-full rounded-lg px-4 py-2 flex items-center justify-between
+                  transition-all duration-200 hover:bg-white hover:shadow-sm"
+              >
+                <div className="flex items-center gap-3">
+                  {Icon && (
+                    <Icon
+                      size={16}
+                      style={{ color: isOpen ? BRAND : "#6b7280" }}
+                    />
+                  )}
+                  <span
+                    className="font-medium"
+                    style={{ color: isOpen ? BRAND : "#1f2937" }}
+                  >
+                    {item.label}
+                  </span>
+                </div>
+
+                <ChevronDown
+                  size={16}
+                  className="transition-transform duration-300"
+                  style={{
+                    color: BRAND,
+                    transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                  }}
+                />
+              </button>
+
+              {/* ---------- ANIMATED SUB MENU ---------- */}
+              <div
+                className={`grid overflow-hidden transition-all duration-300 ease-in-out
+                  ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}
+                  relative ml-6 mt-1 pl-4`}
+              >
+                <div className="min-h-0">
+                  {/* Connector spine */}
+                  <span
+                    className="absolute left-2 top-0 bottom-0 w-[1.5px]"
+                    style={{ backgroundColor: BRAND }}
+                  />
+
+                  <div className="space-y-1">
+                    {item.children.map((child) => {
+                      const key = child
+                        .toLowerCase()
+                        .replace(/\s+/g, "-");
+                      const active = currentPage === key;
+
+                      return (
+                        <button
+                          key={child}
+                          onClick={() => onPageChange(key)}
+                          className={`group relative w-full rounded-md px-4 py-2 text-left
+                            transition-all duration-200
+                            ${
+                              active
+                                ? "bg-white shadow-sm"
+                                : "hover:bg-white hover:shadow-sm"
+                            }`}
+                        >
+                          <div
+                            className="ml-3"
+                            style={{ color: active ? BRAND : "#374151" }}
+                          >
+                            {child}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
           );
         })}
-      </div>
+      </nav>
     </Drawer>
   );
 }

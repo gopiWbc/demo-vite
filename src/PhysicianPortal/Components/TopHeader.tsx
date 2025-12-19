@@ -3,9 +3,7 @@ import { Dropdown } from "antd";
 import type { MenuProps } from "antd";
 import {
   ChevronDown,
-  LogOut,
   Menu as MenuIcon,
-  User,
   X,
 } from "lucide-react";
 
@@ -86,7 +84,7 @@ export default function TopHeader({
                       }}
                     />
                     <span className="text-sm font-semibold tracking-wide text-white/90 uppercase">
-                      Physician Portal
+                      Provider Portal
                     </span>
                   </div>
                 </div>
