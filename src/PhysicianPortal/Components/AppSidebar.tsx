@@ -1,10 +1,7 @@
 import { Drawer } from "antd";
 import {
   ChevronDown,
-  Home,
   Users,
-  FilePlus,
-  FileDown,
   ShoppingCart,
   Package,
   Mail,
@@ -13,6 +10,7 @@ import {
   Phone,
   Settings,
   FileText,
+  Layers2,
 } from "lucide-react";
 import { useState } from "react";
 import logo from "@/assets/dark.png";
@@ -35,7 +33,7 @@ export default function AppSidebar({
   const [openKey, setOpenKey] = useState<string | null>(null);
 
   const items = [
-    { key: "home", label: "Home", icon: Home },
+    { key: "dashboard", label: "Dashboard", icon: Layers2 },
 
     { key: "result-list", label: "Results", icon: FileText },
 
@@ -46,14 +44,10 @@ export default function AppSidebar({
       children: ["Create Patient", "Patient List"],
     },
 
-    // { key: "accession", label: "Accession", icon: FilePlus },
-    // { key: "accession-export", label: "Accession Export", icon: FileDown },
-
     {
       key: "orders",
       label: "Orders",
       icon: ShoppingCart,
-      children: ["New Orders", "Order History", "Manage Orders"],
     },
 
     {

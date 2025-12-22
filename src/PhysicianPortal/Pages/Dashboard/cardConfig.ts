@@ -1,9 +1,7 @@
 import {
-  Home,
   Users,
   UserCheck,
   FilePlus,
-  FileDown,
   ShoppingCart,
   Settings2,
   ShieldCheck,
@@ -17,6 +15,7 @@ import {
   PackageCheck,
   MessageSquare,
   FileBarChart,
+  Layers2,
 } from "lucide-react";
 
 export interface SelectOption {
@@ -34,13 +33,13 @@ export interface CardConfig {
 }
 
 export const CARD_OPTIONS: CardConfig[] = [
-    {
-    id: "home",
-    title: "Home",
-    icon: Home,
-    order: 0,
-    hidden: false,
-  },
+//     {
+//     id: "dashboard",
+//     title: "Dashboard",
+//     icon: Layers2,
+//     order: 0,
+//     hidden: false,
+//   },
 
   {
     id: "patient",

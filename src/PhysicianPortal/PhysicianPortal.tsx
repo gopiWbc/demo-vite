@@ -7,7 +7,7 @@ import Orders from './Pages/Orders/Orders';
 import Dashboard from './Pages/Dashboard/Dashboard';
 
 function PhysicianPortal() {
-  const [currentPage, setCurrentPage] = useState<string>('result-list');
+  const [currentPage, setCurrentPage] = useState<string>('dashboard');
 
   const renderPage = () => {
     switch (currentPage) {

@@ -80,3 +80,7 @@
 .focus\:ring-app-primary:focus {
   box-shadow: 0 0 0 2px var(--app-primary);
 }
+
+.icon-btn {
+  @apply rounded-md p-1 text-slate-500 transition hover:bg-indigo-50 hover:text-indigo-700;
+}

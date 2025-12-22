@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Button, Space } from "antd";
-import { BgColorsOutlined } from "@ant-design/icons";
 import { type CardConfig, CARD_OPTIONS } from "./cardConfig";
 import CustomizeModal from "./CustomizeModal";
 import DashboardCard from "./DashboardCard";
+import { Settings } from "lucide-react";
 
 const Dashboard: React.FC = () => {
   const [cards, setCards] = useState<CardConfig[]>(CARD_OPTIONS);
@@ -114,41 +114,25 @@ const Dashboard: React.FC = () => {
     <>
       <div>
         {/* Header */}
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-medium app-text-primary">
+        <div className="flex justify-between items-center mb-2">
+          <h1 className="text-3xl font-medium text-gray-800 app-text-primary">
             Welcome, John Doe
           </h1>
           <Button
             type="primary"
             className="btn-primary"
-            icon={<BgColorsOutlined />}
+            icon={<Settings className="size-4 mt-1.5" />}
             onClick={() => setCustomizeModalVisible(true)}
           >
-            <span className="font-medium">Customize Dashboard</span>
+            <span className="font-medium">Manage Dashboard</span>
           </Button>
         </div>
 
-          <div className="relative mb-8 rounded-lg border border-blue-200 bg-blue-50 px-5 py-5">
-
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <div>
-                <p className="text-base font-semibold app-text-primary mb-1">
-                  MFA is available in Primex | Provider
+                <p className="text-base font-medium app-text-primary mb-6 text-gray-600">
+                  “Customize and organize your dashboard to match your daily workflow.”
                 </p>
-                <p className="text-sm text-gray-600 max-w-2xl">
-                  Turn on Multifactor Authentication (MFA) to protect your
-                  account from unauthorized access. MFA adds an extra layer of
-                  security and is quick to set up.
-                </p>
-              </div>
-
-              <Space>
-                <Button type="primary" className="btn-primary">
-                  <span className="font-medium">Turn on MFA</span>
-                </Button>
-              </Space>
             </div>
-          </div>
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
