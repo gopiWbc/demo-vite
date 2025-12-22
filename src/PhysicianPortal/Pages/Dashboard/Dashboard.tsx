@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Space } from "antd";
+import { Button } from "antd";
 import { type CardConfig, CARD_OPTIONS } from "./cardConfig";
 import CustomizeModal from "./CustomizeModal";
 import DashboardCard from "./DashboardCard";
@@ -8,102 +8,98 @@ import { Settings } from "lucide-react";
 const Dashboard: React.FC = () => {
   const [cards, setCards] = useState<CardConfig[]>(CARD_OPTIONS);
   const [customizeModalVisible, setCustomizeModalVisible] = useState(false);
-  const [draggedCard, setDraggedCard] = useState<CardConfig | null>(null);
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
 
   const visibleCards = cards
     .filter((card) => !card.hidden)
     .sort((a, b) => a.order - b.order);
 
+  /* ---------------------------
+     GRID LIVE DRAG HANDLERS
+  ---------------------------- */
+
+  const handleDragStart = (index: number) => {
+    setDraggedIndex(index);
+  };
+
+  const handleDragOver = (
+    e: React.DragEvent<HTMLDivElement>,
+    index: number
+  ) => {
+    e.preventDefault();
+
+    if (draggedIndex === null || draggedIndex === index) return;
+
+    setCards((prev) => {
+      const visible = prev
+        .filter((c) => !c.hidden)
+        .sort((a, b) => a.order - b.order);
+
+      const draggedCard = visible[draggedIndex];
+      const updatedVisible = [...visible];
+
+      updatedVisible.splice(draggedIndex, 1);
+      updatedVisible.splice(index, 0, draggedCard);
+
+      // Reassign order only for visible cards
+      return prev.map((card) => {
+        const newIndex = updatedVisible.findIndex(
+          (v) => v.id === card.id
+        );
+        return newIndex !== -1
+          ? { ...card, order: newIndex }
+          : card;
+      });
+    });
+
+    setDraggedIndex(index);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
+  };
+
+  /* ---------------------------
+     OTHER ACTIONS
+  ---------------------------- */
+
   const moveCard = (
     id: string,
     direction: "first" | "last" | "up" | "down"
   ) => {
-    const currentIndex = visibleCards.findIndex((c) => c.id === id);
-    if (currentIndex === -1) return;
+    const index = visibleCards.findIndex((c) => c.id === id);
+    if (index === -1) return;
 
-    let newCards = [...cards];
+    let targetIndex = index;
 
-    if (direction === "first") {
-      newCards = newCards.map((card) => ({
-        ...card,
-        order:
-          card.id === id
-            ? 0
-            : card.order < visibleCards[currentIndex].order
-            ? card.order
-            : card.order + 1,
-      }));
-    } else if (direction === "last") {
-      const maxOrder = Math.max(...visibleCards.map((c) => c.order));
-      newCards = newCards.map((card) => ({
-        ...card,
-        order:
-          card.id === id
-            ? maxOrder
-            : card.order > visibleCards[currentIndex].order
-            ? card.order - 1
-            : card.order,
-      }));
-    } else if (direction === "up" && currentIndex > 0) {
-      const prevCard = visibleCards[currentIndex - 1];
-      newCards = newCards.map((card) =>
-        card.id === id
-          ? { ...card, order: prevCard.order }
-          : card.id === prevCard.id
-          ? { ...card, order: visibleCards[currentIndex].order }
-          : card
-      );
-    } else if (
-      direction === "down" &&
-      currentIndex < visibleCards.length - 1
-    ) {
-      const nextCard = visibleCards[currentIndex + 1];
-      newCards = newCards.map((card) =>
-        card.id === id
-          ? { ...card, order: nextCard.order }
-          : card.id === nextCard.id
-          ? { ...card, order: visibleCards[currentIndex].order }
-          : card
-      );
-    }
+    if (direction === "first") targetIndex = 0;
+    if (direction === "last") targetIndex = visibleCards.length - 1;
+    if (direction === "up") targetIndex = Math.max(index - 1, 0);
+    if (direction === "down")
+      targetIndex = Math.min(index + 1, visibleCards.length - 1);
 
-    setCards(newCards);
-  };
+    if (index === targetIndex) return;
 
-  const handleHideCard = (id: string) => {
-    setCards(
-      cards.map((card) =>
-        card.id === id ? { ...card, hidden: true } : card
-      )
+    const reordered = [...visibleCards];
+    const [moved] = reordered.splice(index, 1);
+    reordered.splice(targetIndex, 0, moved);
+
+    setCards((prev) =>
+      prev.map((card) => {
+        const newIndex = reordered.findIndex((c) => c.id === card.id);
+        return newIndex !== -1
+          ? { ...card, order: newIndex }
+          : card;
+      })
     );
   };
 
-  const handleDragStart = (card: CardConfig) => {
-    setDraggedCard(card);
-  };
-
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-  };
-
-  const handleDrop = (targetCard: CardConfig) => {
-    if (!draggedCard || draggedCard.id === targetCard.id) {
-      setDraggedCard(null);
-      return;
-    }
-
-    const newCards = cards.map((card) => {
-      if (card.id === draggedCard.id) {
-        return { ...card, order: targetCard.order };
-      }
-      if (card.id === targetCard.id) {
-        return { ...card, order: draggedCard.order };
-      }
-      return card;
-    });
-
-    setCards(newCards);
-    setDraggedCard(null);
+  const handleHideCard = (id: string) => {
+    setCards((prev) =>
+      prev.map((card) =>
+        card.id === id ? { ...card, hidden: true } : card
+      )
+    );
   };
 
   const handleSaveCustomization = (updatedCards: CardConfig[]) => {
@@ -128,26 +124,31 @@ const Dashboard: React.FC = () => {
           </Button>
         </div>
 
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <p className="text-base font-medium app-text-primary mb-6 text-gray-600">
-                  “Customize and organize your dashboard to match your daily workflow.”
-                </p>
-            </div>
+        <p className="text-base font-medium text-gray-600 mb-6">
+          “Customize and organize your dashboard to match your daily workflow.”
+        </p>
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
-          {visibleCards.map((card) => (
+          {visibleCards.map((card, index) => (
             <div
               key={card.id}
-              onDragOver={handleDragOver}
-              onDrop={() => handleDrop(card)}
-              className={`transition-all ${
-                draggedCard?.id === card.id ? "opacity-50" : ""
-              }`}
+              draggable
+              onDragStart={() => handleDragStart(index)}
+              onDragOver={(e) => handleDragOver(e, index)}
+              onDragEnd={handleDragEnd}
+              className={`
+                transition-all duration-150
+                ${
+                  draggedIndex === index
+                    ? "opacity-60 scale-[0.98]"
+                    : "opacity-100"
+                }
+              `}
             >
               <DashboardCard
                 card={card}
-                onDragStart={() => handleDragStart(card)}
+                onDragStart={() => handleDragStart(index)}
                 onMoveToFirst={() => moveCard(card.id, "first")}
                 onMoveUp={() => moveCard(card.id, "up")}
                 onMoveDown={() => moveCard(card.id, "down")}
