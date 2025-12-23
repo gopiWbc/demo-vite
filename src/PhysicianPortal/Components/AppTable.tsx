@@ -19,6 +19,7 @@ interface AppTableProps<T> {
   rowClassName?: string | ((record: T, index: number) => string);
   onChange?: TableProps<T>["onChange"];
   scroll?: TableProps<T>["scroll"];
+  showCheckbox?: boolean;
 }
 
 export default function AppTable<T extends object>({
@@ -33,6 +34,7 @@ export default function AppTable<T extends object>({
   rowClassName,
   onChange,
   scroll,
+  showCheckbox = true,
 }: AppTableProps<T>) {
   const defaultPagination: TablePaginationConfig = {
     pageSize: 10,
@@ -47,10 +49,21 @@ export default function AppTable<T extends object>({
       ? false
       : { ...defaultPagination, ...(pagination ?? {}) };
 
-  const resolvedRowSelection =
+  const baseRowSelection: TableRowSelection<T> | undefined =
     rowSelection === true
       ? ({ type: "checkbox" } as TableRowSelection<T>)
-      : rowSelection || undefined;
+      : rowSelection && typeof rowSelection === "object"
+      ? rowSelection
+      : undefined;
+
+  const shouldShowCheckbox = showCheckbox ?? Boolean(rowSelection);
+
+  const resolvedRowSelection: TableRowSelection<T> | undefined = shouldShowCheckbox
+    ? {
+        ...(baseRowSelection ?? {}),
+        type: baseRowSelection?.type ?? "checkbox",
+      }
+    : undefined;
 
   const resolvedScroll: TableProps<T>["scroll"] =
     scroll ?? { x: "max-content" };

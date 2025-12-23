@@ -81,7 +81,7 @@ export default function PrimexLogin() {
 
                   <div className="mb-6">
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Email
+                      Email or Username
                     </label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -89,8 +89,8 @@ export default function PrimexLogin() {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full pl-11 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-[#2d1b4e] focus:border-[#2d1b4e] focus:outline-none transition-colors"
-                        placeholder="Enter your email"
+                        className="w-full pl-11 pr-4 py-3 border-2 border-[#2d1b4e] rounded-lg  focus:outline-none transition-colors"
+                        placeholder="Enter your email or username"
                         required
                       />
                     </div>
@@ -135,7 +135,7 @@ export default function PrimexLogin() {
                         type={showPassword ? "text" : "password"}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full pr-12 pl-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-[#2d1b4e] focus:border-[#2d1b4e] focus:outline-none transition-colors"
+                        className="w-full pr-12 pl-4 py-3 border-2 border-[#2d1b4e] rounded-lg  focus:outline-none transition-colors"
                         placeholder="Enter your password"
                         required
                       />

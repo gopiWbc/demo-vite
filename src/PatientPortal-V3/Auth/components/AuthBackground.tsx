@@ -6,10 +6,10 @@ export default function AuthBackground() {
       <div className={`absolute inset-0 ${styles.gradientLandingBackground}`}></div>
 
       {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-1/2 -right-1/4 w-[800px] h-[800px] bg-gradient-to-br from-blue-400 to-blue-600 rounded-full opacity-20 blur-3xl"></div>
         <div className="absolute -bottom-1/2 -left-1/4 w-[800px] h-[800px] bg-gradient-to-tr from-purple-400 to-indigo-600 rounded-full opacity-20 blur-3xl"></div>
-      </div>
+      </div> */}
 
       {/* Top Right Circles */}
       {/* <div className={styles.circleContainerTopRight}>

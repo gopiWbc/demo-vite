@@ -15,7 +15,7 @@
   --app-border-primary: #200e3d;
   --app-border-secondary: #000000;
 
-  --app-primary-hover: #6427c7; 
+  --app-primary-hover: #4c1e96; 
   
 }
 
@@ -83,4 +83,12 @@
 
 .icon-btn {
   @apply rounded-md p-1 text-slate-500 transition hover:bg-indigo-50 hover:text-indigo-700;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

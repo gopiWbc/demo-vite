@@ -15,9 +15,9 @@ interface AppTabsProps {
 const AppTabs: React.FC<AppTabsProps> = ({ tabs, activeKey, onChange }) => {
   return (
     <div className="border-b border-gray-200">
-      {/* Scroll container for mobile */}
-      <div className="relative overflow-x-auto custom-scrollbar">
-        <div className="flex gap-6 sm:gap-8 px-1 min-w-max">
+      {/* Horizontal scroll container */}
+      <div className="overflow-x-auto scroll-smooth no-scrollbar">
+        <div className="flex gap-5 sm:gap-8 px-3 min-w-max snap-x snap-mandatory">
           {tabs.map((tab) => {
             const isActive = tab.key === activeKey;
 
@@ -26,20 +26,19 @@ const AppTabs: React.FC<AppTabsProps> = ({ tabs, activeKey, onChange }) => {
                 key={tab.key}
                 onClick={() => onChange(tab.key)}
                 className={clsx(
-                  "relative whitespace-nowrap pb-3 transition-colors",
-                  // Typography
+                  "relative snap-start whitespace-nowrap",
+                  "py-3 px-1",
                   "text-sm sm:text-base lg:text-lg font-semibold",
-                  // Colors
                   isActive
                     ? "text-indigo-800"
-                    : "text-gray-500 hover:text-indigo-700"
+                    : "text-gray-500 hover:text-indigo-700",
+                  "focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded"
                 )}
               >
                 {tab.label}
 
-                {/* Active underline */}
                 {isActive && (
-                  <span className="absolute left-0 -bottom-[1px] h-[3px] w-full rounded-full bg-indigo-800" />
+                  <span className="absolute left-0 bottom-0 h-[3px] w-full rounded-full bg-indigo-800" />
                 )}
               </button>
             );
