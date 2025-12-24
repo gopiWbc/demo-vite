@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Switch } from "antd";
 import { PenLine, Save, X } from "lucide-react";
 import type { User } from "./UserList";
 import UserForm from "./UserForm";
@@ -125,61 +124,63 @@ const UserDetails = ({ user, onBack, onUpdate }: UserDetailsProps) => {
         </div>
       ) : (
         <div className="space-y-6">
-            <Section title="Account & Personal Details">
-                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                    <InfoField label="Email" value={formData.email} />
-                    <InfoField label="User Type" value={formData.role} />
+            <div className="flex flex-col lg:flex-row gap-6 justify-between">
+                <div className="flex-1">
+                    <Section title="Account Details">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
+                            <InfoField label="User ID" value={formData.userId} />
+                            <InfoField label="User Type" value={formData.role} />
+                            <InfoField label="Email" value={formData.email} />
+                            
+                            {/* Password Expiry */}
+                            <InfoField label="Password Expiry (days)" value={formData.passwordExpiry} />
+                            
+                            <InfoField label="User Status" value={formData.status} />
 
-                    {/* User Status Toggle (Read-only view) */}
-                    <div className="flex justify-start pb-1">
-                        <label className="text-xs font-semibold tracking-wide text-gray-600 self-center">
-                            <span className="flex items-center gap-3 text-sm text-gray-700">
-                                <span>
-                                    Active
-                                    <div className="text-[11px] font-medium text-gray-500">
-                                        User is {formData.status.toLowerCase()}
-                                    </div>
-                                </span>
-                                <Switch
-                                    checked={formData.status === "Active"}
-                                    disabled
-                                />
-                            </span>
-                        </label>
-                    </div>
-
-                    {/* Email as Username Toggle (Read-only view) */}
-                    <div className="flex justify-start pb-1">
-                        <label className="text-xs font-semibold tracking-wide text-gray-600 self-center">
-                            <span className="flex items-center gap-3 text-sm text-gray-700">
-                                <span>
+                            {/* Email as Username - Read-only view */}
+                            <div>
+                                <span className="block text-xs font-semibold uppercase tracking-wide text-gray-500">
                                     Email as Username
-                                    <div className="text-[11px] font-medium text-gray-500">
-                                        Use email for login
-                                    </div>
                                 </span>
-                                <Switch
-                                    checked={formData.emailAsUsername}
-                                    disabled
-                                />
-                            </span>
-                        </label>
-                    </div>
+                                <span className="mt-1 block text-sm font-semibold text-gray-900">
+                                    {formData.emailAsUsername ? "Yes" : "No"}
+                                </span>
+                            </div>
 
-                    {/* Username - Conditional */}
-                    {!formData.emailAsUsername ? (
-                        <InfoField label="Username" value={formData.username} />
-                    ) : (
-                        <div className="hidden lg:block"></div>
-                    )}
-                    <InfoField label="First Name" value={formData.firstName} />
-                    <InfoField label="Last Name" value={formData.lastName} />
-                    <InfoField label="Middle Name" value={formData.middleName} />
-                    <InfoField label="Mobile" value={formData.mobile} />
-                    <InfoField label="Alternate Mobile" value={formData.alternateMobile} />
-                    <InfoField label="Language" value={formData.language} />
-                    <InfoField label="Created Date" value={formData.createdDate} />
-                    <InfoField label="Last Login" value={formData.lastLogin} />
+                            {/* Username - Conditional */}
+                            {!formData.emailAsUsername && (
+                                <InfoField label="Username" value={formData.username} />
+                            )}
+                        </div>
+                    </Section>
+                </div>
+
+                <div className="flex-1">
+                    <Section title="Personal Details">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
+                            <InfoField label="First Name" value={formData.firstName} />
+                            <InfoField label="Last Name" value={formData.lastName} />
+                            <InfoField label="Middle Name" value={formData.middleName} />
+                            <InfoField label="Mobile" value={formData.mobile} />
+                            <InfoField label="Alternate Mobile" value={formData.alternateMobile} />
+                            <InfoField label="Language" value={formData.language} />
+                            <InfoField label="Created Date" value={formData.createdDate} />
+                            <InfoField label="Last Login" value={formData.lastLogin} />
+                        </div>
+                    </Section>
+                </div>
+            </div>
+
+            <Section title="Preferences">
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                    <InfoField label="Records per page" value={formData.recordsPerPage?.toString() || "10"} />
+                    <InfoField label="Can Order Test" value={formData.canOrderTest || "No"} />
+                    <InfoField label="Show Results" value={formData.showResults || "All"} />
+                    <InfoField label="Critical Alert" value={formData.criticalAlert || "No"} />
+                    <InfoField label="Special Result Watch" value={formData.specialResultWatch} />
+                    <InfoField label="Result to be Watched" value={formData.resultToBeWatched} />
+                    <InfoField label="Alerts - Starting Hour" value={formData.alertsStartingHour ? `${formData.alertsStartingHour}:00` : "--"} />
+                    <InfoField label="Alerts - How Many Hours" value={formData.alertsHowManyHours} />
                 </div>
             </Section>
 

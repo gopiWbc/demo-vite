@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Button, Modal } from "antd";
-import { Trash2, Eye } from "lucide-react";
+import { Trash2, Eye, FlaskConical, Stethoscope, Briefcase, Users as UsersIcon } from "lucide-react";
 import AppTabs from "../../../PatientPortal-V3/Protected/components/AppTabs";
 import AppTable from "../../Components/AppTable";
 import UserFilterComponent from "./UserFilterComponent";
 import UserForm from "./UserForm";
 import UserDetails from "./UserDetails";
+import AssignPanel from "./AssignPanel";
 
 export type User = {
   id: string;
@@ -23,6 +24,18 @@ export type User = {
   emailAsUsername?: boolean;
   username?: string;
   language?: string;
+  userId?: string;
+  password?: string;
+  confirmPassword?: string;
+  passwordExpiry?: string;
+  recordsPerPage?: number;
+  canOrderTest?: string;
+  showResults?: string;
+  criticalAlert?: string;
+  specialResultWatch?: string;
+  resultToBeWatched?: string;
+  alertsStartingHour?: number;
+  alertsHowManyHours?: string;
 };
 
 export type UserFilterValues = {
@@ -68,7 +81,6 @@ const mockUsers: User[] = [
 const UserList = () => {
   const [activeTab, setActiveTab] = useState("view-users");
   const [users, setUsers] = useState<User[]>(mockUsers);
-  const [showCreateModal, setShowCreateModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [filters, setFilters] = useState<UserFilterValues>({
     firstName: "",
@@ -100,9 +112,26 @@ const UserList = () => {
     phone: "",
   });
 
+  // Assign Panel State
+  const [assignPanelOpen, setAssignPanelOpen] = useState(false);
+  const [assignType, setAssignType] = useState<"Physician" | "Sales Rep" | "Client" | null>(null);
+  const [assignUser, setAssignUser] = useState<{ id: string; name: string } | null>(null);
+
+  const openAssignPanel = (user: User, type: "Physician" | "Sales Rep" | "Client") => {
+    setAssignUser({ id: user.id, name: `${user.firstName} ${user.lastName}` });
+    setAssignType(type);
+    setAssignPanelOpen(true);
+  };
+
+  const closeAssignPanel = () => {
+    setAssignPanelOpen(false);
+    setAssignType(null);
+    setAssignUser(null);
+  };
+
   const tabs = [
-    { key: "create-user", label: "Create User" },
     { key: "view-users", label: "View Users" },
+    { key: "create-user", label: "Create User" },
   ];
 
   const handleCreateUser = (userData: any) => {
@@ -252,6 +281,48 @@ const UserList = () => {
       render: (lastLogin: string) => lastLogin || "--",
     },
     {
+      title: "Watch",
+      key: "watch",
+      align: "center" as const,
+      width: 80,
+      render: () => (
+        <div className="flex justify-center">
+          <FlaskConical className="h-4 w-4 text-indigo-600 cursor-pointer hover:text-indigo-800" />
+        </div>
+      ),
+    },
+    {
+      title: "Assign",
+      key: "assign",
+      align: "center" as const,
+      width: 150,
+      render: (record: User) => (
+        <div className="flex items-center justify-center gap-3">
+          <div 
+            className="cursor-pointer text-gray-500 hover:text-indigo-600" 
+            title="Assign Physician"
+            onClick={() => openAssignPanel(record, "Physician")}
+          >
+            <Stethoscope className="h-4 w-4" />
+          </div>
+          <div 
+            className="cursor-pointer text-gray-500 hover:text-indigo-600" 
+            title="Assign Sales Rep"
+            onClick={() => openAssignPanel(record, "Sales Rep")}
+          >
+            <Briefcase className="h-4 w-4" />
+          </div>
+          <div 
+            className="cursor-pointer text-gray-500 hover:text-indigo-600" 
+            title="Assign Client"
+            onClick={() => openAssignPanel(record, "Client")}
+          >
+            <UsersIcon className="h-4 w-4" />
+          </div>
+        </div>
+      ),
+    },
+    {
       title: "Actions",
       key: "actions",
       render: (record: User) => (
@@ -341,6 +412,13 @@ const UserList = () => {
             )}
         </>
       )}
+      
+      <AssignPanel 
+        open={assignPanelOpen} 
+        onClose={closeAssignPanel} 
+        assignType={assignType}
+        user={assignUser}
+      />
     </div>
   );
 };

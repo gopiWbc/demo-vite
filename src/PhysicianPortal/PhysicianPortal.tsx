@@ -5,8 +5,10 @@ import Profile from './Pages/Profile';
 import ResultList from './Pages/ResultList';
 import Orders from './Pages/Orders/Orders';
 import Dashboard from './Pages/Dashboard/Dashboard';
-
+import PhysicianList from './Pages/Physician/PhysicianList';
 import UserList from './Pages/User/UserList';
+import ClientList from './Pages/Client/ClientList';
+import SupplyOrderMaster from './Pages/Supply/SupplyOrderMaster';
 
 function PhysicianPortal() {
   const [currentPage, setCurrentPage] = useState<string>('dashboard');
@@ -23,6 +25,12 @@ function PhysicianPortal() {
         return <Orders />;
       case 'users':
         return <UserList />;
+      case 'physicians':
+        return <PhysicianList />;
+      case 'clients':
+        return <ClientList />;
+      case "supply-masters":
+        return <SupplyOrderMaster />
       default:
         return <Profile />;
     }

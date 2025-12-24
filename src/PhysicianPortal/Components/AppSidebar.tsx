@@ -32,45 +32,67 @@ export default function AppSidebar({
 }: SidebarProps) {
   const [openKey, setOpenKey] = useState<string | null>(null);
 
-  const items = [
-    { key: "dashboard", label: "Dashboard", icon: Layers2 },
+ const items = [
+  { key: "dashboard", label: "Dashboard", icon: Layers2 },
 
-    { key: "result-list", label: "Results", icon: FileText },
+  { key: "result-list", label: "Results", icon: FileText },
 
-    {
-      key: "patient",
-      label: "Patient",
-      icon: Users,
-      children: ["Create Patient", "Patient List"],
-    },
+  {
+    key: "patient",
+    label: "Patient",
+    icon: Users,
+    children: [
+      { key: "create-patient", label: "Create Patient" },
+      { key: "patient-list", label: "Patient List" },
+    ],
+  },
 
-    {
-      key: "orders",
-      label: "Orders",
-      icon: ShoppingCart,
-    },
+  {
+    key: "orders",
+    label: "Orders",
+    icon: ShoppingCart,
+  },
 
-    {
-      key: "settings",
-      label: "Settings",
-      icon: Settings,
-      children: ["General", "Roles & Permissions"],
-    },
+  {
+    key: "settings",
+    label: "Settings",
+    icon: Settings,
+    children: [
+      { key: "users", label: "Users" },
+      { key: "physicians", label: "Physicians" },
+      { key: "clients", label: "Clients" },
+      { key: "configuration", label: "Configuration" },
+      { key: "pending-requests", label: "Pending Requests" },
+      // { key: "security", label: "Security" },
+    ],
+  },
 
-    {
-      key: "manage",
-      label: "Manage",
-      icon: Users,
-      children: ["Users", "Labs"],
-    },
+  {
+    key: "manage",
+    label: "Manage",
+    icon: Users,
+    children: [
+      { key: "icd-code", label: "ICD Code" },
+      { key: "custom-panels", label: "Custom Panels" },
+      { key: "test/panel-codes", label: "Test/Panel Codes" },
+      { key: "dictionary", label: "Dictionary" },
+      { key: "sales-log", label: "Sales Log" },
+      { key: "import-patients", label: "Import Patients" },
+      { key: "import-clients", label: "Import Clients" },
+      { key: "user-logs", label: "User Logs" },
+      { key: "ipa-patients-import", label: "IPA Patients Import" },
+      { key: "ipa-client-routing", label: "IPA Client Routing" },
+      { key: "ipa-patient-routing", label: "IPA Patient Routing" },
+    ],
+  },
 
-    { key: "supply-masters", label: "Supply Order Masters", icon: Package },
-    { key: "supply-orders", label: "Supply Orders", icon: Package },
-    { key: "messages", label: "Messages", icon: Mail },
-    { key: "transactions", label: "Transactions", icon: CreditCard },
-    { key: "sales-report", label: "Sales Report", icon: BarChart3 },
-    { key: "contact", label: "Contact Us", icon: Phone },
-  ];
+  { key: "supply-masters", label: "Supply Order Masters", icon: Package },
+  { key: "supply-orders", label: "Supply Orders", icon: Package },
+  { key: "messages", label: "Messages", icon: Mail },
+  { key: "transactions", label: "Transactions", icon: CreditCard },
+  { key: "sales-report", label: "Sales Report", icon: BarChart3 },
+  { key: "contact", label: "Contact Us", icon: Phone },
+];
 
   return (
     <Drawer
@@ -178,16 +200,13 @@ export default function AppSidebar({
                   />
 
                   <div className="space-y-1">
-                    {item.children.map((child) => {
-                      const key = child
-                        .toLowerCase()
-                        .replace(/\s+/g, "-");
-                      const active = currentPage === key;
+                    {item.children.map((child: any) => {
+                      const active = currentPage === child.key;
 
                       return (
                         <button
-                          key={child}
-                          onClick={() => onPageChange(key)}
+                          key={child.key}
+                          onClick={() => onPageChange(child.key)}
                           className={`group relative w-full rounded-md px-4 py-2 text-left
                             transition-all duration-200
                             ${
@@ -200,7 +219,7 @@ export default function AppSidebar({
                             className="ml-3"
                             style={{ color: active ? BRAND : "#374151" }}
                           >
-                            {child}
+                            {child.label}
                           </div>
                         </button>
                       );
