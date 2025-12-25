@@ -171,7 +171,7 @@ const TransactionFilterComponent = ({
                 value={toRangeValue(filters.receivedRange)}
                 onChange={(_, dateStrings) => handleRangeChange("receivedRange", dateStrings as [string, string])}
                 format={dateFormat}
-                className="shadow-sm"
+                className="shadow-sm w-full"
               />
             </div>
             <div>
@@ -181,7 +181,7 @@ const TransactionFilterComponent = ({
                 value={toRangeValue(filters.processedRange)}
                 onChange={(_, dateStrings) => handleRangeChange("processedRange", dateStrings as [string, string])}
                 format={dateFormat}
-                className="shadow-sm"
+                className="shadow-sm w-full"
               />
             </div>
           </div>

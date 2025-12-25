@@ -20,6 +20,7 @@ import IpaClientRoutingPage from './Pages/IpaRouting/IpaClient/IpaClientRoutingP
 import IpaPatientRoutingPage from './Pages/IpaRouting/IpaPatient/IpaPatientRoutingPage';
 import SalesLogList from './Pages/SalesLog/SalesLogList';
 import TransactionPage from './Pages/Transactions/TransactionsPage';
+import SupplyOrdersPage from './Pages/SupplyOrders/SupplyOrdersPage';
 
 function PhysicianPortal() {
   const [currentPage, setCurrentPage] = useState<string>('dashboard');
@@ -48,6 +49,8 @@ function PhysicianPortal() {
         return <PendingRequestsPage />;
       case "supply-masters":
         return <SupplyOrderMaster />
+      case "supply-orders":
+        return <SupplyOrdersPage />
       case "custom-panels":
         return <CustomPanelPage />
       case "icd-code":

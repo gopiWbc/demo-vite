@@ -18,7 +18,7 @@ const mockPatients: IpaPatientItem[] = [
     patientId: "CL1",
     ipaPatientId: "CL1",
     firstName: "SA",
-    lastName: "SAKTHI",
+    lastName: "John",
     dob: "05/25/2001",
   },
   {
@@ -35,7 +35,7 @@ const mockPatients: IpaPatientItem[] = [
     ipaClient: "KL90",
     patientId: "KL90",
     ipaPatientId: "KL90",
-    firstName: "JANANI",
+    firstName: "JANE",
     lastName: "DOE",
     dob: "03/06/1980",
   },
