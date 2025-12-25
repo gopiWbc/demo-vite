@@ -77,10 +77,10 @@ export default function AppSidebar({
       { key: "test/panel-codes", label: "Test/Panel Codes" },
       { key: "dictionary", label: "Dictionary" },
       { key: "sales-log", label: "Sales Log" },
-      { key: "import-patients", label: "Import Patients" },
-      { key: "import-clients", label: "Import Clients" },
+      // { key: "import-patients", label: "Import Patients" },
+      // { key: "import-clients", label: "Import Clients" },
       { key: "user-logs", label: "User Logs" },
-      { key: "ipa-patients-import", label: "IPA Patients Import" },
+      // { key: "ipa-patients-import", label: "IPA Patients Import" },
       { key: "ipa-client-routing", label: "IPA Client Routing" },
       { key: "ipa-patient-routing", label: "IPA Patient Routing" },
     ],
@@ -91,7 +91,7 @@ export default function AppSidebar({
   { key: "messages", label: "Messages", icon: Mail },
   { key: "transactions", label: "Transactions", icon: CreditCard },
   { key: "sales-report", label: "Sales Report", icon: BarChart3 },
-  { key: "contact", label: "Contact Us", icon: Phone },
+  // { key: "contact", label: "Contact Us", icon: Phone },
 ];
 
   return (
