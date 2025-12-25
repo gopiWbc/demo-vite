@@ -2,43 +2,43 @@ import { useState } from "react";
 import { Input, Select } from "antd";
 import { Filter, ChevronUp, ChevronDown, Search as SearchIcon } from "lucide-react";
 
-export type ConfigurationFilterValues = {
-  configType: string;
-  name: string;
-  value: string;
+export type TestPanelFilterValues = {
+  testCode: string;
+  testNumber: string;
+  testName: string;
+  loinc: string;
+  filterBy: string;
 };
 
-type ConfigurationFilterProps = {
-  filters: ConfigurationFilterValues;
-  onFilterChange: (filters: ConfigurationFilterValues) => void;
+type TestPanelFilterProps = {
+  filters: TestPanelFilterValues;
+  onFilterChange: (filters: TestPanelFilterValues) => void;
   onSearch: () => void;
   onClearAll: () => void;
-  typeOptions?: { label: string; value: string }[];
+  filterByOptions?: { label: string; value: string }[];
 };
 
-const defaultTypeOptions = [
-  { label: "--Select--", value: "" },
-  { label: "Admin", value: "Admin" },
-  { label: "Admin1", value: "Admin1" },
-  { label: "Email", value: "Email" },
-  { label: "Sms", value: "Sms" },
-  { label: "Portal", value: "Portal" },
+const defaultFilterByOptions = [
+  { label: "--Select filter--", value: "" },
+  { label: "All", value: "all" },
+  { label: "Active", value: "active" },
+  { label: "Inactive", value: "inactive" },
 ];
 
-const ConfigurationFilterComponent = ({
+const TestPanelFilterComponent = ({
   filters,
   onFilterChange,
   onSearch,
   onClearAll,
-  typeOptions = defaultTypeOptions,
-}: ConfigurationFilterProps) => {
+  filterByOptions = defaultFilterByOptions,
+}: TestPanelFilterProps) => {
   const [expanded, setExpanded] = useState(true);
 
-  const handleChange = <Key extends keyof ConfigurationFilterValues>(key: Key, value: ConfigurationFilterValues[Key]) => {
+  const handleChange = <Key extends keyof TestPanelFilterValues>(key: Key, value: TestPanelFilterValues[Key]) => {
     onFilterChange({ ...filters, [key]: value });
   };
 
-  const removeFilter = (key: keyof ConfigurationFilterValues) => onFilterChange({ ...filters, [key]: "" });
+  const removeFilter = (key: keyof TestPanelFilterValues) => onFilterChange({ ...filters, [key]: "" });
 
   const hasActiveFilters = Object.values(filters).some(Boolean);
 
@@ -65,41 +65,70 @@ const ConfigurationFilterComponent = ({
           <div className="px-4 sm:px-6 py-5 bg-gray-50 border-b border-gray-200">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
               <div>
-                <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">Config</label>
+                <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">Test code</label>
+                <Input
+                  size="large"
+                  placeholder="Search by test code"
+                  prefix={<SearchIcon className="h-4 w-4 text-gray-400" />}
+                  value={filters.testCode}
+                  allowClear
+                  onChange={(event) => handleChange("testCode", event.target.value)}
+                  onPressEnter={onSearch}
+                  className="shadow-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">Test number</label>
+                <Input
+                  size="large"
+                  placeholder="Search by test number"
+                  prefix={<SearchIcon className="h-4 w-4 text-gray-400" />}
+                  value={filters.testNumber}
+                  allowClear
+                  onChange={(event) => handleChange("testNumber", event.target.value)}
+                  onPressEnter={onSearch}
+                  className="shadow-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">Test name</label>
+                <Input
+                  size="large"
+                  placeholder="Search by test name"
+                  prefix={<SearchIcon className="h-4 w-4 text-gray-400" />}
+                  value={filters.testName}
+                  allowClear
+                  onChange={(event) => handleChange("testName", event.target.value)}
+                  onPressEnter={onSearch}
+                  className="shadow-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">Loinc</label>
+                <Input
+                  size="large"
+                  placeholder="Search by LOINC"
+                  prefix={<SearchIcon className="h-4 w-4 text-gray-400" />}
+                  value={filters.loinc}
+                  allowClear
+                  onChange={(event) => handleChange("loinc", event.target.value)}
+                  onPressEnter={onSearch}
+                  className="shadow-sm"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-5">
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">Filter by</label>
                 <Select
                   size="large"
-                  value={filters.configType || undefined}
-                  onChange={(value) => handleChange("configType", value)}
-                  placeholder="--Select--"
-                  options={typeOptions}
+                  value={filters.filterBy || undefined}
+                  onChange={(value) => handleChange("filterBy", value)}
+                  placeholder="--Select filter--"
+                  options={filterByOptions}
                   className="w-full shadow-sm"
                   allowClear
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">Config name</label>
-                <Input
-                  size="large"
-                  placeholder="Search by name"
-                  prefix={<SearchIcon className="h-4 w-4 text-gray-400" />}
-                  value={filters.name}
-                  allowClear
-                  onChange={(event) => handleChange("name", event.target.value)}
-                  onPressEnter={onSearch}
-                  className="shadow-sm"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">Config value</label>
-                <Input
-                  size="large"
-                  placeholder="Search by value"
-                  prefix={<SearchIcon className="h-4 w-4 text-gray-400" />}
-                  value={filters.value}
-                  allowClear
-                  onChange={(event) => handleChange("value", event.target.value)}
-                  onPressEnter={onSearch}
-                  className="shadow-sm"
                 />
               </div>
             </div>
@@ -125,9 +154,11 @@ const ConfigurationFilterComponent = ({
       <div className="my-6 flex flex-wrap gap-2">
         {(
           [
-            { key: "configType", label: "Config", value: filters.configType },
-            { key: "name", label: "Name", value: filters.name },
-            { key: "value", label: "Value", value: filters.value },
+            { key: "testCode", label: "Test code", value: filters.testCode },
+            { key: "testNumber", label: "Test number", value: filters.testNumber },
+            { key: "testName", label: "Test name", value: filters.testName },
+            { key: "loinc", label: "Loinc", value: filters.loinc },
+            { key: "filterBy", label: "Filter by", value: filters.filterBy },
           ] as const
         )
           .filter((filter) => filter.value)
@@ -144,4 +175,4 @@ const ConfigurationFilterComponent = ({
   );
 };
 
-export default ConfigurationFilterComponent;
+export default TestPanelFilterComponent;

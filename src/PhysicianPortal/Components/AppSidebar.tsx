@@ -7,7 +7,6 @@ import {
   Mail,
   CreditCard,
   BarChart3,
-  Phone,
   Settings,
   FileText,
   Layers2,
@@ -41,10 +40,6 @@ export default function AppSidebar({
     key: "patient",
     label: "Patient",
     icon: Users,
-    children: [
-      { key: "create-patient", label: "Create Patient" },
-      { key: "patient-list", label: "Patient List" },
-    ],
   },
 
   {
@@ -90,7 +85,7 @@ export default function AppSidebar({
   { key: "supply-orders", label: "Supply Orders", icon: Package },
   { key: "messages", label: "Messages", icon: Mail },
   { key: "transactions", label: "Transactions", icon: CreditCard },
-  { key: "sales-report", label: "Sales Report", icon: BarChart3 },
+  // { key: "sales-report", label: "Sales Report", icon: BarChart3 },
   // { key: "contact", label: "Contact Us", icon: Phone },
 ];
 

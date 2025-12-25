@@ -233,7 +233,7 @@ const CreatePatient = ({ onCancel, onSubmit }: CreatePatientProps) => {
   };
 
   return (
-    <div className="space-y-6 px-4 pb-10">
+    <div className="space-y-2 px-4 pb-10">
       <nav className="text-sm text-gray-500">
         <ol className="flex flex-wrap items-center gap-2">
           <li className="text-indigo-600 font-semibold">Orders</li>

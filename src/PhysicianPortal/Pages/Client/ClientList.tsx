@@ -241,10 +241,12 @@ const ClientList = () => {
       title: "Client ID",
       dataIndex: "clientId",
       key: "clientId",
+       width: "40%",
     },
     {
       title: "Client Name",
       dataIndex: "clientName",
+       width: "40%",
       key: "clientName",
       render: (_: string, record: Client) => (
         <button
@@ -317,10 +319,11 @@ const ClientList = () => {
   const tabItems = [
     { key: "view-clients", label: "View Clients" },
     { key: "create-client", label: "Add Client" },
+    { key: "import-client", label: "Import Client" },
   ];
 
   return (
-    <div className="space-y-6 px-4 pb-10">
+    <div className="space-y-2 px-4 pb-10">
       <AppTabs
         tabs={tabItems}
         activeKey={activeTab}

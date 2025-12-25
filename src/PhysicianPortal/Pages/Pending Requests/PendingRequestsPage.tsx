@@ -159,20 +159,6 @@ const PendingRequestsPage = () => {
 
   const columns = [
     {
-      title: "Edit",
-      key: "edit",
-      width: 70,
-      render: (record: PendingRequestRecord) => (
-        <Button
-          type="text"
-          size="small"
-          icon={<PenLine className="h-4 w-4" />}
-          onClick={() => handleEdit(record)}
-          className="text-indigo-600 hover:text-indigo-700"
-        />
-      ),
-    },
-    {
       title: "Username",
       dataIndex: "username",
       key: "username",
@@ -198,10 +184,18 @@ const PendingRequestsPage = () => {
       key: "email",
     },
     {
-      title: "Del",
-      key: "delete",
+      title: "Actions",
+      key: "actions",
       width: 70,
       render: (record: PendingRequestRecord) => (
+         <div className="flex items-center gap-2">
+          <Button
+          type="text"
+          size="small"
+          icon={<PenLine className="h-4 w-4" />}
+          onClick={() => handleEdit(record)}
+          className="text-indigo-600 hover:text-indigo-700"
+        />
         <Button
           type="text"
           size="small"
@@ -209,12 +203,13 @@ const PendingRequestsPage = () => {
           onClick={() => handleDelete(record)}
           className="text-red-600 hover:text-red-700"
         />
+        </div>
       ),
     },
   ];
 
   return (
-    <div className="space-y-6 px-4 pb-10">
+    <div className="space-y-2 px-4 pb-10">
       {!selectedRequest&&<div className="flex items-center justify-between">
         <h1 className="text-xl font-bold text-slate-800">Pending Requests</h1>
       </div>}

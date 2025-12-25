@@ -2,43 +2,50 @@ import { useState } from "react";
 import { Input, Select } from "antd";
 import { Filter, ChevronUp, ChevronDown, Search as SearchIcon } from "lucide-react";
 
-export type ConfigurationFilterValues = {
-  configType: string;
-  name: string;
-  value: string;
+export type IcdCodeFilterValues = {
+  icdNumber: string;
+  icdName: string;
+  codeType: string;
+  filterBy: string;
 };
 
-type ConfigurationFilterProps = {
-  filters: ConfigurationFilterValues;
-  onFilterChange: (filters: ConfigurationFilterValues) => void;
+type IcdCodeFilterProps = {
+  filters: IcdCodeFilterValues;
+  onFilterChange: (filters: IcdCodeFilterValues) => void;
   onSearch: () => void;
   onClearAll: () => void;
-  typeOptions?: { label: string; value: string }[];
+  codeTypeOptions?: { label: string; value: string }[];
+  filterByOptions?: { label: string; value: string }[];
 };
 
-const defaultTypeOptions = [
+const defaultCodeTypeOptions = [
   { label: "--Select--", value: "" },
-  { label: "Admin", value: "Admin" },
-  { label: "Admin1", value: "Admin1" },
-  { label: "Email", value: "Email" },
-  { label: "Sms", value: "Sms" },
-  { label: "Portal", value: "Portal" },
+  { label: "ICD9", value: "ICD9" },
+  { label: "ICD10", value: "ICD10" },
 ];
 
-const ConfigurationFilterComponent = ({
+const defaultFilterByOptions = [
+  { label: "--Select filter--", value: "" },
+  { label: "All", value: "all" },
+  { label: "Active", value: "active" },
+  { label: "Inactive", value: "inactive" },
+];
+
+const IcdCodeFilterComponent = ({
   filters,
   onFilterChange,
   onSearch,
   onClearAll,
-  typeOptions = defaultTypeOptions,
-}: ConfigurationFilterProps) => {
+  codeTypeOptions = defaultCodeTypeOptions,
+  filterByOptions = defaultFilterByOptions,
+}: IcdCodeFilterProps) => {
   const [expanded, setExpanded] = useState(true);
 
-  const handleChange = <Key extends keyof ConfigurationFilterValues>(key: Key, value: ConfigurationFilterValues[Key]) => {
+  const handleChange = <Key extends keyof IcdCodeFilterValues>(key: Key, value: IcdCodeFilterValues[Key]) => {
     onFilterChange({ ...filters, [key]: value });
   };
 
-  const removeFilter = (key: keyof ConfigurationFilterValues) => onFilterChange({ ...filters, [key]: "" });
+  const removeFilter = (key: keyof IcdCodeFilterValues) => onFilterChange({ ...filters, [key]: "" });
 
   const hasActiveFilters = Object.values(filters).some(Boolean);
 
@@ -65,41 +72,53 @@ const ConfigurationFilterComponent = ({
           <div className="px-4 sm:px-6 py-5 bg-gray-50 border-b border-gray-200">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
               <div>
-                <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">Config</label>
+                <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">ICD number</label>
+                <Input
+                  size="large"
+                  placeholder="Search by ICD number"
+                  prefix={<SearchIcon className="h-4 w-4 text-gray-400" />}
+                  value={filters.icdNumber}
+                  allowClear
+                  onChange={(event) => handleChange("icdNumber", event.target.value)}
+                  onPressEnter={onSearch}
+                  className="shadow-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">ICD name</label>
+                <Input
+                  size="large"
+                  placeholder="Search by ICD name"
+                  prefix={<SearchIcon className="h-4 w-4 text-gray-400" />}
+                  value={filters.icdName}
+                  allowClear
+                  onChange={(event) => handleChange("icdName", event.target.value)}
+                  onPressEnter={onSearch}
+                  className="shadow-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">ICD code type</label>
                 <Select
                   size="large"
-                  value={filters.configType || undefined}
-                  onChange={(value) => handleChange("configType", value)}
+                  value={filters.codeType || undefined}
+                  onChange={(value) => handleChange("codeType", value)}
                   placeholder="--Select--"
-                  options={typeOptions}
+                  options={codeTypeOptions}
                   className="w-full shadow-sm"
                   allowClear
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">Config name</label>
-                <Input
+                <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">Filter by</label>
+                <Select
                   size="large"
-                  placeholder="Search by name"
-                  prefix={<SearchIcon className="h-4 w-4 text-gray-400" />}
-                  value={filters.name}
+                  value={filters.filterBy || undefined}
+                  onChange={(value) => handleChange("filterBy", value)}
+                  placeholder="--Select filter--"
+                  options={filterByOptions}
+                  className="w-full shadow-sm"
                   allowClear
-                  onChange={(event) => handleChange("name", event.target.value)}
-                  onPressEnter={onSearch}
-                  className="shadow-sm"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">Config value</label>
-                <Input
-                  size="large"
-                  placeholder="Search by value"
-                  prefix={<SearchIcon className="h-4 w-4 text-gray-400" />}
-                  value={filters.value}
-                  allowClear
-                  onChange={(event) => handleChange("value", event.target.value)}
-                  onPressEnter={onSearch}
-                  className="shadow-sm"
                 />
               </div>
             </div>
@@ -125,9 +144,10 @@ const ConfigurationFilterComponent = ({
       <div className="my-6 flex flex-wrap gap-2">
         {(
           [
-            { key: "configType", label: "Config", value: filters.configType },
-            { key: "name", label: "Name", value: filters.name },
-            { key: "value", label: "Value", value: filters.value },
+            { key: "icdNumber", label: "ICD number", value: filters.icdNumber },
+            { key: "icdName", label: "ICD name", value: filters.icdName },
+            { key: "codeType", label: "ICD code type", value: filters.codeType },
+            { key: "filterBy", label: "Filter by", value: filters.filterBy },
           ] as const
         )
           .filter((filter) => filter.value)
@@ -144,4 +164,4 @@ const ConfigurationFilterComponent = ({
   );
 };
 
-export default ConfigurationFilterComponent;
+export default IcdCodeFilterComponent;

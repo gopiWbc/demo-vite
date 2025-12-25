@@ -135,7 +135,7 @@ const SupplyOrderMaster = () => {
   ];
 
   return (
-    <div className="space-y-6 px-4 pb-10">
+    <div className="space-y-2 px-4 pb-10">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold text-slate-800">Supply Order Master</h1>
         <Button type="primary" className="btn-primary rounded-lg px-5 py-2 text-sm font-semibold shadow-md" icon={<Plus className="h-4 w-4" />} onClick={openCreate}>

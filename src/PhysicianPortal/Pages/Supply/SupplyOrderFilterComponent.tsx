@@ -129,7 +129,7 @@ const SupplyOrderFilterComponent = ({ filters, onFilterChange, onSearch, onClear
       </div>
 
       {/* Active Filters (simple pills) */}
-      <div className="mt-2 flex flex-wrap gap-2">
+      <div className="my-6 flex flex-wrap gap-2">
         {(
           [
             { key: "code", label: "Code", value: filters.code },

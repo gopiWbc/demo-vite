@@ -11,6 +11,15 @@ import ClientList from './Pages/Client/ClientList';
 import SupplyOrderMaster from './Pages/Supply/SupplyOrderMaster';
 import ConfigurationPage from './Pages/Configurations/ConfigurationPage';
 import PendingRequestsPage from './Pages/Pending Requests/PendingRequestsPage';
+import CustomPanelPage from './Pages/CustomPanel/CustomPanelPage';
+import IcdCodePage from './Pages/ICD Code/IcdCodePage';
+import UserLogPage from './Pages/UserLog/UserLogPage';
+import TestPanelPage from './Pages/Test Panel/TestPanelPage';
+import DictionaryPage from './Pages/Dictionary/DictionaryPage';
+import IpaClientRoutingPage from './Pages/IpaRouting/IpaClient/IpaClientRoutingPage';
+import IpaPatientRoutingPage from './Pages/IpaRouting/IpaPatient/IpaPatientRoutingPage';
+import SalesLogList from './Pages/SalesLog/SalesLogList';
+import TransactionPage from './Pages/Transactions/TransactionsPage';
 
 function PhysicianPortal() {
   const [currentPage, setCurrentPage] = useState<string>('dashboard');
@@ -27,6 +36,8 @@ function PhysicianPortal() {
         return <Orders />;
       case 'users':
         return <UserList />;
+      case 'transactions':
+        return <TransactionPage />;
       case 'physicians':
         return <PhysicianList />;
       case 'clients':
@@ -37,6 +48,22 @@ function PhysicianPortal() {
         return <PendingRequestsPage />;
       case "supply-masters":
         return <SupplyOrderMaster />
+      case "custom-panels":
+        return <CustomPanelPage />
+      case "icd-code":
+        return <IcdCodePage />
+      case "test/panel-codes":
+        return <TestPanelPage />
+      case "dictionary":
+        return <DictionaryPage />
+      case "user-logs":
+        return <UserLogPage />
+      case "ipa-client-routing":
+        return <IpaClientRoutingPage />
+      case "ipa-patient-routing":
+        return <IpaPatientRoutingPage />
+      case "sales-log":
+        return <SalesLogList />
       default:
         return <Profile />;
     }

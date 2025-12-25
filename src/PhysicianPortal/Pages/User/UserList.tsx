@@ -347,7 +347,7 @@ const UserList = () => {
   ];
 
   return (
-    <div className="space-y-6 px-4 pb-10">
+    <div className="space-y-2 px-4 pb-10">
 
       <AppTabs tabs={tabs} activeKey={activeTab} onChange={(key) => {
           setActiveTab(key);
