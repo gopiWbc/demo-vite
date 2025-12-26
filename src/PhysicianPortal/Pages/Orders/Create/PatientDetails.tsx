@@ -515,7 +515,7 @@ const PatientDetails = () => {
   }
 
   return (
-    <div className="space-y-2 px-4 pb-10">
+    <div className="space-y-2 pb-10">
       <nav className="text-sm text-gray-500">
         <ol className="flex flex-wrap items-center gap-2">
           <li className="text-indigo-600 font-semibold">Orders</li>
@@ -569,7 +569,7 @@ const PatientDetails = () => {
               </span>
               <button
                 type="button"
-                className="inline-flex items-center gap-2 rounded-lg border border-indigo-200 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-indigo-700 transition hover:border-indigo-400 hover:text-indigo-900"
+                className="inline-flex ml-auto items-center gap-2 rounded-lg border border-indigo-200 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-indigo-700 transition hover:border-indigo-400 hover:text-indigo-900"
                 onClick={startPatientEditing}
               >
                 <PenLine className="h-4 w-4" /> Edit Patient
@@ -580,7 +580,7 @@ const PatientDetails = () => {
       >
         {isEditingPatient ? (
           <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-5">
               {demographicFieldConfigs.map((field) => (
                 <label
                   key={String(field.key)}
@@ -642,7 +642,7 @@ const PatientDetails = () => {
             })}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
             <InfoField
               label="Name"
               value={`${details.patient.lastName}, ${details.patient.firstName}`}
@@ -692,6 +692,7 @@ const PatientDetails = () => {
         title="Insurance Information / Responsible Party"
         actions={
           !isEditingInsurance && (
+            <div className="flex justify-end">
             <button
               type="button"
               className="inline-flex items-center gap-2 rounded-lg border border-indigo-200 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-indigo-700 transition hover:border-indigo-400 hover:text-indigo-900"
@@ -699,12 +700,13 @@ const PatientDetails = () => {
             >
               <PenLine className="h-4 w-4" /> Edit Insurance
             </button>
+            </div>
           )
         }
       >
         {isEditingInsurance ? (
           <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-5">
               {insuranceFieldConfigs.map((field) => (
                 <label
                   key={String(field.key)}
@@ -781,7 +783,7 @@ const PatientDetails = () => {
           </div>
         ) : (
           <div className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
               <InfoField label="Primary Insurance" value={details.insurance.primaryInsurance} />
               <InfoField label="Insurance ID" value={details.insurance.insuranceId} />
               <InfoField label="Group Number" value={details.insurance.groupNumber} />
@@ -805,7 +807,7 @@ const PatientDetails = () => {
               <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-600">
                 Responsible Party
               </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
                 <InfoField
                   label="Relationship"
                   value={details.insurance.responsibleParty.relationship}

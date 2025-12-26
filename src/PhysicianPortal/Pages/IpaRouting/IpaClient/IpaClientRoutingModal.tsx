@@ -121,8 +121,8 @@ const IpaClientRoutingModal = ({
         </Button>,
       ]}
     >
-      <div className="space-y-6 py-4 max-h-[65vh] overflow-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="space-y-2  py-4 max-h-[65vh] overflow-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <label className="block text-xs font-semibold uppercase tracking-wide text-gray-600">
             <span className="mb-2 inline-block">
               Client <span className="text-rose-500">*</span>

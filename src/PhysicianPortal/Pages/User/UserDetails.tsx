@@ -59,7 +59,7 @@ const UserDetails = ({ user, onBack, onUpdate }: UserDetailsProps) => {
   );
 
   return (
-    <div className="space-y-2 px-4 pb-10">
+    <div className="space-y-2 pb-10">
       <nav className="text-sm text-gray-500">
         <ol className="flex flex-wrap items-center gap-2">
           <li className="text-indigo-600 font-semibold cursor-pointer" onClick={onBack}>
@@ -127,7 +127,7 @@ const UserDetails = ({ user, onBack, onUpdate }: UserDetailsProps) => {
             <div className="flex flex-col lg:flex-row gap-6 justify-between">
                 <div className="flex-1">
                     <Section title="Account Details">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
+                        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
                             <InfoField label="User ID" value={formData.userId} />
                             <InfoField label="User Type" value={formData.role} />
                             <InfoField label="Email" value={formData.email} />
@@ -157,7 +157,7 @@ const UserDetails = ({ user, onBack, onUpdate }: UserDetailsProps) => {
 
                 <div className="flex-1">
                     <Section title="Personal Details">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
+                        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
                             <InfoField label="First Name" value={formData.firstName} />
                             <InfoField label="Last Name" value={formData.lastName} />
                             <InfoField label="Middle Name" value={formData.middleName} />
@@ -172,7 +172,7 @@ const UserDetails = ({ user, onBack, onUpdate }: UserDetailsProps) => {
             </div>
 
             <Section title="Preferences">
-                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                     <InfoField label="Records per page" value={formData.recordsPerPage?.toString() || "10"} />
                     <InfoField label="Can Order Test" value={formData.canOrderTest || "No"} />
                     <InfoField label="Show Results" value={formData.showResults || "All"} />

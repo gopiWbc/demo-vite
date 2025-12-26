@@ -7,29 +7,49 @@ import SupplyOrderModal, { type SupplyItem } from "./SupplyOrderModal";
 
 const mockSupplies: SupplyItem[] = [
   {
-    id: "1",
+    id: "kit-std",
     code: "KIT-STD",
     name: "Standard Collection Kit",
     category: "Kits",
     status: "Active",
-    image: null,
-    notes: "Includes tubes and swabs",
+    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=160&q=80",
+    notes: "Comprehensive phlebotomy kit with collection tubes and swabs.",
   },
   {
-    id: "2",
-    code: "SWB-NP",
-    name: "Nasopharyngeal Swab",
-    category: "Swabs",
-    status: "Inactive",
-    image: null,
-  },
-  {
-    id: "3",
+    id: "cnt-ur",
     code: "CNT-UR",
     name: "Urine Container 50ml",
     category: "Containers",
     status: "Active",
-    image: null,
+    image: "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=160&q=80",
+    notes: "Sterile 50ml containers sealed for urine specimen transport.",
+  },
+  {
+    id: "kit-flu",
+    code: "KIT-FLU",
+    name: "Influenza Nasal Swab Kit",
+    category: "Swabs",
+    status: "Active",
+    image: "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=160&q=80",
+    notes: "Soft-tipped nasal swabs with transport medium for flu panels.",
+  },
+  {
+    id: "kit-blood",
+    code: "KIT-BLD",
+    name: "Blood Collection Set",
+    category: "Kits",
+    status: "Active",
+    image: "https://images.unsplash.com/photo-1581391492920-44d612196ad6?auto=format&fit=crop&w=160&q=80",
+    notes: "Butterfly needles, tubes, and holders for blood collection.",
+  },
+  {
+    id: "cnt-bio",
+    code: "CNT-BIO",
+    name: "Biohazard Transport Bag",
+    category: "Containers",
+    status: "Active",
+    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=160&q=80",
+    notes: "Zippered transport bags with absorbent liner for bio specimens.",
   },
 ];
 
@@ -124,6 +144,7 @@ const SupplyOrderMaster = () => {
     {
       title: "Actions",
       key: "actions",
+      fixed: "right" as const,
       width: 110,
       render: (record: SupplyItem) => (
         <div className="flex items-center gap-2">
@@ -135,7 +156,7 @@ const SupplyOrderMaster = () => {
   ];
 
   return (
-    <div className="space-y-2 px-4 pb-10">
+    <div className="space-y-2 pb-10">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold text-slate-800">Supply Order Master</h1>
         <Button type="primary" className="btn-primary rounded-lg px-5 py-2 text-sm font-semibold shadow-md" icon={<Plus className="h-4 w-4" />} onClick={openCreate}>

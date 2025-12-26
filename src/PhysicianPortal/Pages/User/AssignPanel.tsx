@@ -180,7 +180,7 @@ export default function AssignPanel({ open, onClose, assignType, user }: AssignP
 
         {/* Transfer Area */}
         <div className="flex-1 overflow-hidden p-4">
-          <div className="grid grid-cols-[1fr_auto_1fr] gap-4 h-full">
+          <div className="grid md:grid-cols-[1fr_auto_1fr] gap-4 h-full">
             
             {/* Unassigned List */}
             <div className="flex flex-col border-2 border-gray-200 rounded-xl overflow-hidden h-full shadow-sm hover:shadow-md transition-shadow">
@@ -249,7 +249,7 @@ export default function AssignPanel({ open, onClose, assignType, user }: AssignP
             </div>
 
             {/* Controls */}
-            <div className="flex flex-col justify-center gap-2.5">
+            <div className="flex md:flex-col justify-center gap-2.5">
               <Button 
                 icon={<ArrowRightFromLine size={18} />} 
                 onClick={handleMoveAllRight}

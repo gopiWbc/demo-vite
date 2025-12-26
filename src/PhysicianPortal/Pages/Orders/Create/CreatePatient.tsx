@@ -233,7 +233,7 @@ const CreatePatient = ({ onCancel, onSubmit }: CreatePatientProps) => {
   };
 
   return (
-    <div className="space-y-2 px-4 pb-10">
+    <div className="space-y-2 pb-10">
       <nav className="text-sm text-gray-500">
         <ol className="flex flex-wrap items-center gap-2">
           <li className="text-indigo-600 font-semibold">Orders</li>
@@ -253,6 +253,7 @@ const CreatePatient = ({ onCancel, onSubmit }: CreatePatientProps) => {
             <span>Complete the form below to add a new patient record.</span>
           </div>
         </div>
+        <div className="flex justify-end">
         <button
           type="button"
           className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-600 transition hover:border-rose-400 hover:text-rose-500"
@@ -260,10 +261,11 @@ const CreatePatient = ({ onCancel, onSubmit }: CreatePatientProps) => {
         >
           <X className="h-4 w-4" /> Cancel
         </button>
+        </div>
       </div>
 
       <Section title="Patient Demographics">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3  xl:grid-cols-4 gap-5">
           {demographicFieldConfigs.map((field) => (
             <label
               key={String(field.key)}
@@ -328,7 +330,7 @@ const CreatePatient = ({ onCancel, onSubmit }: CreatePatientProps) => {
       </Section>
 
       <Section title="Insurance Information / Responsible Party">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3  xl:grid-cols-4 gap-5">
           {insuranceFieldConfigs.map((field) => (
             <label
               key={String(field.key)}
@@ -381,7 +383,7 @@ const CreatePatient = ({ onCancel, onSubmit }: CreatePatientProps) => {
             <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-600">
               Responsible Party Information
             </h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-3  xl:grid-cols-4 gap-5">
               {responsibleFieldConfigs.map((field) => (
                 <label
                   key={String(field.key)}
@@ -404,10 +406,10 @@ const CreatePatient = ({ onCancel, onSubmit }: CreatePatientProps) => {
       <div className="flex flex-wrap items-center justify-end gap-3">
         <button
           type="button"
-          className="btn-primary inline-flex items-center gap-2 rounded-lg px-5 py-2 text-sm font-semibold shadow-md"
-          onClick={handleSubmit}
+          className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-5 py-2 text-sm font-semibold text-gray-600 transition hover:border-rose-400 hover:text-rose-500"
+          onClick={onCancel}
         >
-          <Save className="h-4 w-4" /> Create Patient
+          <X className="h-4 w-4" /> Cancel
         </button>
         <button
           type="button"
@@ -418,10 +420,10 @@ const CreatePatient = ({ onCancel, onSubmit }: CreatePatientProps) => {
         </button>
         <button
           type="button"
-          className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-5 py-2 text-sm font-semibold text-gray-600 transition hover:border-rose-400 hover:text-rose-500"
-          onClick={onCancel}
+          className="btn-primary inline-flex items-center gap-2 rounded-lg px-5 py-2 text-sm font-semibold shadow-md"
+          onClick={handleSubmit}
         >
-          <X className="h-4 w-4" /> Cancel
+          <Save className="h-4 w-4" /> Create
         </button>
       </div>
     </div>

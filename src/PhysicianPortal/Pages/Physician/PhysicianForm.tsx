@@ -62,7 +62,7 @@ const PhysicianForm: React.FC<PhysicianFormProps> = ({ formData, onChange }) => 
       <div className="flex flex-col lg:flex-row gap-6 justify-between">
         <div className="flex-1">
           <Section title="Physician Details">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
               {/* Physician ID - shown only in edit mode, always disabled */}
               {formData.physicianId && (
                 <div>
@@ -156,7 +156,7 @@ const PhysicianForm: React.FC<PhysicianFormProps> = ({ formData, onChange }) => 
 
         <div className="flex-1">
           <Section title="Address & Contact">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
               {/* Address-1 */}
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wide text-gray-600 mb-2">

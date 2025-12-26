@@ -325,6 +325,7 @@ const UserList = () => {
     {
       title: "Actions",
       key: "actions",
+      fixed: "right" as const,
       render: (record: User) => (
         <div className="flex items-center gap-2">
           <Button
@@ -347,7 +348,7 @@ const UserList = () => {
   ];
 
   return (
-    <div className="space-y-2 px-4 pb-10">
+    <div className="space-y-2 pb-5">
 
       <AppTabs tabs={tabs} activeKey={activeTab} onChange={(key) => {
           setActiveTab(key);

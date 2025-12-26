@@ -54,7 +54,7 @@ const SupplyOrderFilterComponent = ({
 
       <div className={`transition-all duration-300 ease-in-out overflow-hidden ${expanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"}`}>
         <div className="px-4 sm:px-6 py-5 bg-gray-50 border-b border-gray-200">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
             <div>
               <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wide">Client ID</label>
               <Input
@@ -75,7 +75,7 @@ const SupplyOrderFilterComponent = ({
                 value={toRangeValue(filters.orderDateRange)}
                 onChange={(_, dateStrings) => handleChange("orderDateRange", [dateStrings[0] || null, dateStrings[1] || null])}
                 format={dateFormat}
-                className="shadow-sm"
+                className="shadow-sm w-full"
               />
             </div>
           </div>

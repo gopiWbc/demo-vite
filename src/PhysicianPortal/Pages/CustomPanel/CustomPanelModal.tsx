@@ -82,7 +82,6 @@ const CustomPanelModal = ({ open, initial, onClose, onSave }: CustomPanelModalPr
           size="large"
           className="!rounded-lg !text-white !font-medium btn-primary border-none hover:shadow-lg"
           onClick={handleSubmit}
-          disabled={!canSubmit}
         >
           {isEdit ? "Save Changes" : "Submit"}
         </Button>,

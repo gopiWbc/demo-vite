@@ -110,7 +110,7 @@ const Dashboard: React.FC = () => {
     <>
       <div>
         {/* Header */}
-        <div className="flex justify-between items-center mb-2">
+        <div className="flex flex-col md:flex-row justify-between md:items-center gap-2 mb-2">
           <h1 className="text-3xl font-medium text-gray-800 app-text-primary">
             Welcome, John Doe
           </h1>
@@ -129,7 +129,7 @@ const Dashboard: React.FC = () => {
         </p>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
           {visibleCards.map((card, index) => (
             <div
               key={card.id}

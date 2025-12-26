@@ -17,7 +17,7 @@ const AppTabs: React.FC<AppTabsProps> = ({ tabs, activeKey, onChange }) => {
     <div className="border-b border-gray-200">
       {/* Horizontal scroll container */}
       <div className="overflow-x-auto scroll-smooth no-scrollbar">
-        <div className="flex gap-5 sm:gap-8 px-3 min-w-max snap-x snap-mandatory">
+        <div className="flex gap-5 sm:gap-8 min-w-max snap-x snap-mandatory">
           {tabs.map((tab) => {
             const isActive = tab.key === activeKey;
 

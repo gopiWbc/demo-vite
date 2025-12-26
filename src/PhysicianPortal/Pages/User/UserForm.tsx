@@ -30,7 +30,7 @@ const UserForm: React.FC<UserFormProps> = ({ formData, onChange }) => {
       <div className="flex flex-col lg:flex-row gap-6 justify-between">
         <div className="flex-1">
           <Section title="Account Details">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
             {/* User ID - shown only in edit mode, always disabled */}
             {formData.userId && (
                 <div>
@@ -168,7 +168,7 @@ const UserForm: React.FC<UserFormProps> = ({ formData, onChange }) => {
         
         <div className="flex-1">
           <Section title="Personal Details">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
             {/* First Name */}
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wide text-gray-600 mb-2">

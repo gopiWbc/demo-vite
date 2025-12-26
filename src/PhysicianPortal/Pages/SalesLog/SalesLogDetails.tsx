@@ -189,7 +189,7 @@ const SalesLogDetails = ({ record, onBack, onUpdate }: SalesLogDetailsProps) => 
                 <h3 className="text-base font-semibold uppercase tracking-wide text-indigo-900">Log Information</h3>
               </div>
               <div className="px-6 py-6 space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-5">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-5">
                   {logInfoFields.map((field) => (
                     <InfoField key={field.label} label={field.label} value={field.value} />
                   ))}
@@ -220,7 +220,7 @@ const SalesLogDetails = ({ record, onBack, onUpdate }: SalesLogDetailsProps) => 
                 <h3 className="text-base font-semibold uppercase tracking-wide text-indigo-900">Client Details</h3>
               </div>
               <div className="px-6 py-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-5">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-5">
                   {clientFields.map((field) => (
                     <InfoField key={field.label} label={field.label} value={field.value} />
                   ))}

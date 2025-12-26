@@ -118,7 +118,7 @@ const PendingRequestDetails = ({
 
       <div className="flex flex-col lg:flex-row gap-6">
         <Section title="User Details" className="flex-1">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-5">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div>
             <label className="block text-xs font-semibold uppercase tracking-wide text-gray-600 mb-2">
               First Name <span className="text-rose-500">*</span>
@@ -259,13 +259,13 @@ const PendingRequestDetails = ({
               </span>
             </label>
 
-            <Button type="primary" className="btn-primary" onClick={() => onAssign("Client")}>
+            <Button type="primary" className="btn-primary self-end" onClick={() => onAssign("Client")}>
               Assign
             </Button>
           </div>
 
           {form.enableClient && (
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-5">
+            <div className="mt-6 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wide text-gray-600 mb-2">
                   Client ID <span className="text-rose-500">*</span>

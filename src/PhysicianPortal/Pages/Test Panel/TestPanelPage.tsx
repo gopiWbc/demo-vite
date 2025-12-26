@@ -189,7 +189,7 @@ const TestPanelPage = () => {
   ];
 
   return (
-    <div className="space-y-2 px-4 pb-10">
+    <div className="space-y-2 pb-10">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold text-slate-800">Test/Panel Codes</h1>
         <Button

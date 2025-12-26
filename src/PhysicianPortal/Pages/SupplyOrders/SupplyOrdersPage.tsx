@@ -273,6 +273,7 @@ const SupplyOrdersPage = () => {
     {
       title: "Actions",
       key: "actions",
+      fixed: "right" as const,
       width: 100,
       render: (_: unknown, record: SupplyOrderRecord) => (
         <Button

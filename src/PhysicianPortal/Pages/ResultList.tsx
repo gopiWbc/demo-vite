@@ -202,11 +202,11 @@ export default function ResultList() {
               Review recent lab orders, manage result delivery, and access supporting files.
             </p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center justify-end gap-3">
             <button className="btn-primary rounded-lg px-5 py-2 text-sm font-semibold shadow-md">
               New Order
             </button>
-            <button  className="rounded-lg border border-gray-300 px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold text-gray-700 transition hover:border-indigo-600 hover:text-indigo-600 flex-1 sm:flex-initial">
+            <button  className="rounded-lg border border-gray-300 px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold text-gray-700 transition hover:border-indigo-600 hover:text-indigo-600 sm:flex-initial">
               Export
             </button>
           </div>

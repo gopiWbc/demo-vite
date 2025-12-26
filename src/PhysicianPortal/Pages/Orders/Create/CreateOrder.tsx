@@ -249,7 +249,7 @@ const CreateOrder: FC = () => {
     : "Standing order disabled";
 
   return (
-    <div className="space-y-6 px-4 pb-12">
+    <div className="space-y-6 pb-12">
       <header className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="space-y-1">
           <h1 className="text-2xl font-bold tracking-wide text-gray-900 uppercase">Lynch, Jacqueline</h1>
@@ -343,7 +343,7 @@ const CreateOrder: FC = () => {
         </div>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
             <label className="text-xs font-semibold tracking-wide text-gray-600 self-center">
-            <span className="flex items-center gap-3 text-sm text-gray-700">
+            <span className="flex items-center justify-between text-sm text-gray-700">
             <span>
               Standing Order
               <div className="text-[11px] font-medium text-gray-500">
@@ -445,7 +445,7 @@ const CreateOrder: FC = () => {
                 />
               </label>
             </div>
-            <div className="lg:pt-6">
+            <div className="lg:pt-6 flex justify-end">
               <button
                 type="button"
                 className="flex items-center gap-2 rounded-lg border-2 border-indigo-200 bg-white px-4 py-2.5 text-sm font-semibold text-indigo-700 transition-all hover:border-indigo-300 hover:bg-indigo-50"
@@ -616,7 +616,7 @@ const CreateOrder: FC = () => {
         </div>
       </Section>
 
-      <footer className="flex flex-wrap items-center justify-end gap-3 rounded-2xl border border-transparent bg-white px-6 py-5 shadow-sm">
+      <footer className="flex flex-wrap items-center justify-end gap-3">
         <button
           type="button"
           className="rounded-lg border border-slate-200 px-5 py-2 text-sm font-semibold text-slate-600 transition hover:border-slate-300 hover:text-slate-700"
@@ -627,13 +627,13 @@ const CreateOrder: FC = () => {
           type="button"
           className="rounded-lg border border-indigo-200 px-5 py-2 text-sm font-semibold text-indigo-600 transition hover:border-indigo-300 hover:text-indigo-700"
         >
-          Save Draft
+          Draft
         </button>
         <button
           type="button"
           className="btn-primary rounded-lg px-5 py-2 text-sm font-semibold shadow-md"
         >
-          Submit Order
+          Submit
         </button>
       </footer>
 

@@ -82,7 +82,6 @@ const TestPanelModal = ({ open, initial, onClose, onSave }: TestPanelModalProps)
           size="large"
           className="!rounded-lg !text-white !font-medium btn-primary border-none hover:shadow-lg"
           onClick={handleSubmit}
-          disabled={!canSubmit}
         >
           {isEdit ? "Save Changes" : "Submit"}
         </Button>,

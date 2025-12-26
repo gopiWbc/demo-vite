@@ -55,7 +55,7 @@ const SalesLogForm = ({ formData, onChange }: SalesLogFormProps) => {
       <div className="flex flex-col lg:flex-row gap-6 justify-between">
         <div className="flex-1">
           <Section title="Log Information">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
               <label className="block text-xs font-semibold uppercase tracking-wide text-gray-600">
                 <span className="mb-2 inline-block">
                   Date <span className="text-rose-500">*</span>
@@ -146,7 +146,7 @@ const SalesLogForm = ({ formData, onChange }: SalesLogFormProps) => {
 
         <div className="flex-1">
           <Section title="Client Details">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
               <label className="block text-xs font-semibold uppercase tracking-wide text-gray-600">
                 <span className="mb-2 inline-block">
                   Sales Rep Name <span className="text-rose-500">*</span>

@@ -193,6 +193,7 @@ const TransactionPage = () => {
      {
       title: "Actions",
       key: "actions",
+      fixed: "right" as const,
       width: 100,
       render: () => (
         <div className="flex items-center gap-2">
@@ -221,11 +222,11 @@ const TransactionPage = () => {
             <h1 className="text-2xl font-semibold text-gray-900">Transactions</h1>
             <p className="text-sm text-gray-500">Monitor interface transactions and troubleshoot delivery statuses.</p>
           </div>
-          <div className="flex items-center gap-3">
+          {/* <div className="flex items-center gap-3">
             <button className="rounded-lg border border-gray-300 px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold text-gray-700 transition hover:border-indigo-600 hover:text-indigo-600">
               Export
             </button>
-          </div>
+          </div> */}
         </div>
       </header>
 

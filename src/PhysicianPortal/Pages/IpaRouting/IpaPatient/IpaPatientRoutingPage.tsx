@@ -183,7 +183,7 @@ const IpaPatientRoutingPage = () => {
   ];
 
   return (
-    <div className="space-y-2 px-4 pb-10">
+    <div className="space-y-2 pb-10">
       <AppTabs
         tabs={patientTabItems}
         activeKey={activeTab}
@@ -194,7 +194,7 @@ const IpaPatientRoutingPage = () => {
         <div className="space-y-6">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h1 className="text-xl font-bold text-slate-800">IPA Patient Route</h1>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex justify-end gap-2">
               <Button className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700">
                 Export to CSV
               </Button>

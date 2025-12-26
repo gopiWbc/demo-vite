@@ -323,7 +323,7 @@ const ClientList = () => {
   ];
 
   return (
-    <div className="space-y-2 px-4 pb-10">
+    <div className="space-y-2 pb-10">
       <AppTabs
         tabs={tabItems}
         activeKey={activeTab}

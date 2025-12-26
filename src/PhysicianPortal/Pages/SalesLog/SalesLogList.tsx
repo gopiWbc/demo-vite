@@ -268,7 +268,7 @@ const SalesLogList = () => {
   }
 
   return (
-    <div className="space-y-2 px-4 pb-10">
+    <div className="space-y-2 pb-10">
       <AppTabs
         tabs={tabs}
         activeKey={activeTab}
