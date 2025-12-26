@@ -85,7 +85,7 @@ export default function AppSidebar({
   { key: "supply-orders", label: "Supply Orders", icon: Package },
   { key: "messages", label: "Messages", icon: Mail },
   { key: "transactions", label: "Transactions", icon: CreditCard },
-  // { key: "sales-report", label: "Sales Report", icon: BarChart3 },
+  { key: "sales-report", label: "Sales Report", icon: BarChart3 },
   // { key: "contact", label: "Contact Us", icon: Phone },
 ];
 

@@ -21,6 +21,7 @@ import IpaPatientRoutingPage from './Pages/IpaRouting/IpaPatient/IpaPatientRouti
 import SalesLogList from './Pages/SalesLog/SalesLogList';
 import TransactionPage from './Pages/Transactions/TransactionsPage';
 import SupplyOrdersPage from './Pages/SupplyOrders/SupplyOrdersPage';
+import SalesReport from './Pages/SalesReport/SalesReport';
 
 function PhysicianPortal() {
   const [currentPage, setCurrentPage] = useState<string>('dashboard');
@@ -67,6 +68,8 @@ function PhysicianPortal() {
         return <IpaPatientRoutingPage />
       case "sales-log":
         return <SalesLogList />
+      case "sales-report":
+        return <SalesReport />
       default:
         return <Profile />;
     }
