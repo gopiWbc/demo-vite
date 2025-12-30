@@ -22,6 +22,7 @@ import SalesLogList from './Pages/SalesLog/SalesLogList';
 import TransactionPage from './Pages/Transactions/TransactionsPage';
 import SupplyOrdersPage from './Pages/SupplyOrders/SupplyOrdersPage';
 import SalesReport from './Pages/SalesReport/SalesReport';
+import Message from './Pages/Messages/Message';
 
 function PhysicianPortal() {
   const [currentPage, setCurrentPage] = useState<string>('dashboard');
@@ -70,6 +71,8 @@ function PhysicianPortal() {
         return <SalesLogList />
       case "sales-report":
         return <SalesReport />
+      case "messages":
+        return <Message />
       default:
         return <Profile />;
     }
@@ -79,6 +82,7 @@ function PhysicianPortal() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex flex-col">
       <TopHeader currentPage={currentPage} onPageChange={setCurrentPage} />
       <main className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-3">
+      {/* <main className="flex-1 w-full "> */}
           <section className="space-y-6 lg:col-span-3 xl:col-span-4">
             {renderPage()}
           </section>

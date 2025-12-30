@@ -47,7 +47,7 @@ function ReportView({ data }: ReportViewProps) {
   return (
     <div className="space-y-8 pb-10">
       {/* Header Section */}
-      <div className="flex flex-col md:flex md:items-center justify-between gap-2">
+      <div className="flex flex-col md:flex-row justify-between gap-2">
         <div>
           <h2 className="text-2xl font-bold text-gray-700">
             Sales Performance Dashboard

@@ -3,12 +3,12 @@ import { Dropdown } from "antd";
 import type { MenuProps } from "antd";
 import {
   ChevronDown,
-  Menu as MenuIcon,
   X,
 } from "lucide-react";
 
 import logo from "@/assets/dark.png";
 import AppSidebar from "./AppSidebar";
+import { MenuUnfoldOutlined } from "@ant-design/icons";
 
 interface TopHeaderProps {
   currentPage: string;
@@ -65,7 +65,7 @@ export default function TopHeader({
                   className="rounded-lg p-2 text-white hover:bg-white/10 transition"
                   aria-label="Open sidebar"
                 >
-                  {drawerOpen ? <X  className="size-7" /> : <MenuIcon className="size-7" />}
+                  {drawerOpen ? <X  className="size-7" /> : <MenuUnfoldOutlined className="text-[24px]" />}
                 </button>
 
                 <div className="flex items-center gap-3 overflow-hidden">
