@@ -8,12 +8,12 @@ import PhysicianPortal from './PhysicianPortal/PhysicianPortal'
 
 const App = () => {
   return (
-    <PrimexLogin />
+    // <PrimexLogin />
     // <PrimexRegister />
     // <PrimexV3 />
     // <PatientPortal />
     // <PhysicianLogin />
-    // <PhysicianPortal />
+    <PhysicianPortal />
   )
 }
 
